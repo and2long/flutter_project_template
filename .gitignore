@@ -52,7 +52,8 @@ android/Gemfile.lock
 ios/fastlane/README.md
 ios/fastlane/report.xml
 ios/Gemfile.lock
-Runner.*
+Runner.app.*
+Runner.ipa
 *.mobileprovision
 *.cer
 

@@ -13,7 +13,7 @@ class DialogUtils {
         return AlertDialog(
           content: Text(content),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text(S.of(context).ok,
                   style: TextStyle(color: Theme.of(context).primaryColor)),
               onPressed: onPressed ?? () => Navigator.of(context).pop(),
@@ -34,13 +34,13 @@ class DialogUtils {
         return AlertDialog(
           content: Text(content),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
                 child: Text(S.of(context).cancel,
                     style: TextStyle(color: Theme.of(context).primaryColor)),
                 onPressed: () {
                   Navigator.pop(context, false);
                 }),
-            FlatButton(
+            TextButton(
                 child: Text(S.of(context).ok,
                     style: TextStyle(color: Theme.of(context).primaryColor)),
                 onPressed: onPressed),
