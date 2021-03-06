@@ -25,14 +25,14 @@ class SLocalizationsDelegate extends LocalizationsDelegate<S> {
 class S {
   const S();
 
-  static Locale _locale;
+  static Locale? _locale;
 
   static set locale(Locale newLocale) {
     S._locale = newLocale;
   }
 
   static S of(BuildContext context) {
-    return Localizations.of<S>(context, S);
+    return Localizations.of<S>(context, S)!;
   }
 
   static List<Locale> get supportedLocales {
@@ -58,33 +58,33 @@ class S {
     return localData[key];
   }
 
-  String get appName => getItem('app_name');
+  String get appName => getItem('app_name') as String;
 
   /// common
-  String get delete => getItem('delete');
-  String get edit => getItem('edit');
-  String get cancel => getItem('cancel');
-  String get ok => getItem('ok');
-  String get publish => getItem('publish');
-  String get save => getItem('save');
-  String get send => getItem('send');
-  String get search => getItem('search');
-  String get skip => getItem('skip');
-  String get next => getItem('next');
-  String get start => getItem('start');
-  String get readAndAgree => getItem('read_and_agree');
-  String get privacyPolicy => getItem('privacy_policy');
-  String get termsOfService => getItem('terms_of_service');
-  String get collapse => getItem('collapse');
-  String get expand => getItem('expand');
+  String get delete => getItem('delete') as String;
+  String get edit => getItem('edit') as String;
+  String get cancel => getItem('cancel') as String;
+  String get ok => getItem('ok') as String;
+  String get publish => getItem('publish') as String;
+  String get save => getItem('save') as String;
+  String get send => getItem('send') as String;
+  String get search => getItem('search') as String;
+  String get skip => getItem('skip') as String;
+  String get next => getItem('next') as String;
+  String get start => getItem('start') as String;
+  String get readAndAgree => getItem('read_and_agree') as String;
+  String get privacyPolicy => getItem('privacy_policy') as String;
+  String get termsOfService => getItem('terms_of_service') as String;
+  String get collapse => getItem('collapse') as String;
+  String get expand => getItem('expand') as String;
   String get english => 'English';
   String get japanese => '日本語';
   String get simpleChinese => '简体中文';
-  Map<String, String> get localeSets => {'en': english, 'ja': japanese, 'zh': simpleChinese};
-  String get date => getItem('date');
-  String get time => getItem('time');
+  Map<String, String> get localeSets =>
+      {'en': english, 'ja': japanese, 'zh': simpleChinese};
+  String get date => getItem('date') as String;
+  String get time => getItem('time') as String;
 
-  String get tab1 => getItem('tab1');
-  String get tab2 => getItem('tab2');
-
+  String get tab1 => getItem('tab1') as String;
+  String get tab2 => getItem('tab2') as String;
 }

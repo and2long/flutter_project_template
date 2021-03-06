@@ -22,14 +22,14 @@ class Store {
 
 /// 语言
 class LocaleStore with ChangeNotifier {
-  String _languageCode;
+  String? _languageCode;
 
   LocaleStore(this._languageCode);
 
-  String get languageCode => _languageCode;
+  String? get languageCode => _languageCode;
 
-  set languageCode(String languageCode) {
-    if (languageCode != _languageCode) {
+  set languageCode(String? languageCode) {
+    if (languageCode != null && languageCode != _languageCode) {
       _languageCode = languageCode;
       S.locale = Locale(languageCode);
       SPUtils.setLanguageCode(languageCode);

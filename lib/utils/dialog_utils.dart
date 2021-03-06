@@ -5,7 +5,7 @@ import 'package:flutter_project_template/i18n/i18n.dart';
 class DialogUtils {
   /// 显示提示框：提示文本+确定按钮。
   static showAlertDialog(BuildContext context, String content,
-      {VoidCallback onPressed}) {
+      {VoidCallback? onPressed}) {
     showDialog(
       barrierDismissible: false,
       context: context,
@@ -25,7 +25,7 @@ class DialogUtils {
   }
 
   /// 显示提示框：内容+取消按钮+确定按钮，确定按钮需要点击事件。
-  static Future<bool> showAlertDialog2Actions(
+  static Future<bool?> showAlertDialog2Actions(
       BuildContext context, String content, VoidCallback onPressed) async {
     return await showDialog(
       barrierDismissible: false,

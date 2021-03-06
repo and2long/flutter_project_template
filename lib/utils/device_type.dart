@@ -1,5 +1,5 @@
-import 'dart:ui' as ui;
 import 'dart:io';
+import 'dart:ui' as ui;
 
 class Device {
   static double devicePixelRatio = ui.window.devicePixelRatio;
@@ -10,17 +10,17 @@ class Device {
   static double screenHeight = height / devicePixelRatio;
   static ui.Size screenSize = ui.Size(screenWidth, screenHeight);
   final bool isTablet, isPhone, isIos, isAndroid, isIphoneX;
-  static Device _device;
+  static Device? _device;
 
   Device(
-      {this.isTablet,
-      this.isPhone,
-      this.isIos,
-      this.isAndroid,
-      this.isIphoneX});
+      {this.isTablet = false,
+      this.isPhone = false,
+      this.isIos = false,
+      this.isAndroid = false,
+      this.isIphoneX = false});
 
   factory Device.get() {
-    if (_device != null) return _device;
+    if (_device != null) return _device!;
 
     bool isTablet;
     bool isPhone;

@@ -43,9 +43,9 @@ class MyApp extends StatelessWidget {
         supportedLocales: S.supportedLocales,
         locale: localeStore.languageCode == null
             ? S.supportedLocales.first
-            : Locale(localeStore.languageCode),
+            : Locale(localeStore.languageCode!),
         localeResolutionCallback:
-            (Locale locale, Iterable<Locale> supportedLocales) {
+            (Locale? locale, Iterable<Locale> supportedLocales) {
           Log.d('MyApp',
               'deviceLocale: $locale, supportedLocales: $supportedLocales, languageCode: ${localeStore.languageCode}');
           // 默认系统语言，如果不支持，则使用支持语言的第一个。
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
             Log.d('MyApp', 'localeStore.languageCode is null');
             List<String> supportedLanguageCodeList =
                 S.supportedLocales.map((e) => e.languageCode).toList();
-            if (supportedLanguageCodeList.contains(locale.languageCode)) {
+            if (supportedLanguageCodeList.contains(locale!.languageCode)) {
               localeStore.setLanguageCode(locale.languageCode);
             } else {
               localeStore
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
             }
             return locale;
           }
-          return Locale(localeStore.languageCode);
+          return Locale(localeStore.languageCode!);
         },
         routes: RouteMap.routes,
         home: HomePage(),
