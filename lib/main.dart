@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_project_template/network/http.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/init/provider.dart';
@@ -16,6 +17,7 @@ import 'package:flutter_project_template/utils/sp_utils.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SPUtils.init().then((value) {
+    XHttp.init();
     runApp(Store.init(MyApp()));
   });
   // 安卓透明状态栏

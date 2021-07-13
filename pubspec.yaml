@@ -30,6 +30,7 @@ dependencies:
   provider: ^5.0.0
   shared_preferences: ^2.0.3
   fluttertoast: ^8.0.7
+  dio: ^4.0.0
 
 dev_dependencies:
   flutter_test:
