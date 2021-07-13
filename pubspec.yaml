@@ -29,7 +29,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^5.0.0
   shared_preferences: ^2.0.3
-  oktoast: ^3.0.0
+  fluttertoast: ^8.0.7
 
 dev_dependencies:
   flutter_test:
