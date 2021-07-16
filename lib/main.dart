@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_project_template/network/http.dart';
+import 'package:flutter_project_template/utils/common_util.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/init/provider.dart';
@@ -67,6 +68,14 @@ class MyApp extends StatelessWidget {
         },
         routes: RouteMap.routes,
         home: HomePage(),
+        builder: (context, child) => Scaffold(
+          body: GestureDetector(
+            onTap: () {
+              CommonUtils.hideKeyboard(context);
+            },
+            child: child,
+          ),
+        ),
       );
     });
   }
