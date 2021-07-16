@@ -20,7 +20,4 @@ const Map<String, Object> I18N_ZH = {
   "date": "日期",
   "time": "时间",
 
-  /// bottom tabs
-  "tab1": "首页",
-  "tab2": "我的",
 };

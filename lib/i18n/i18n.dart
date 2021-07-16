@@ -85,6 +85,5 @@ class S {
   String get date => getItem('date') as String;
   String get time => getItem('time') as String;
 
-  String get tab1 => getItem('tab1') as String;
-  String get tab2 => getItem('tab2') as String;
+
 }

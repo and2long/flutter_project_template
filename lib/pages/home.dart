@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_template/i18n/i18n.dart';
-import 'package:flutter_project_template/pages/me.dart';
 import 'package:flutter_project_template/pages/page1.dart';
+import 'package:flutter_project_template/pages/page2.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = 'HomePage';
@@ -29,7 +28,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         physics: NeverScrollableScrollPhysics(),
         children: [
           Page1(),
-          MePage(),
+          Page2(),
         ],
         controller: _pageController,
         onPageChanged: (index) {
@@ -42,11 +41,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: S.of(context).tab1,
+            label: 'Tab1',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: S.of(context).tab2,
+            label: 'Tab2',
           ),
         ],
         currentIndex: _tabIndex,

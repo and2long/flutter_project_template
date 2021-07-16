@@ -20,7 +20,5 @@ const Map<String, Object> I18N_EN = {
   "date": "Date",
   "time": "Time",
 
-  /// bottom tabs
-  "tab1": "Home",
-  "tab2": "Me",
+
 };

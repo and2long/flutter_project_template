@@ -20,7 +20,5 @@ const Map<String, Object> I18N_JA = {
   "date": "日付",
   "time": "時間",
 
-  /// bottom tabs
-  "tab1": "ホーム",
-  "tab2": "アカウント",
+
 };
