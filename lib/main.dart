@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
     return Consumer<LocaleStore>(builder: (context, localeStore, _) {
       return MaterialApp(
         onGenerateTitle: (context) => S.of(context).appName,
-        theme: AppTheme.mainTheme(context),
+        theme: AppTheme.lightTheme(context),
         localizationsDelegates: [
           SLocalizationsDelegate.delegate,
           GlobalMaterialLocalizations.delegate,

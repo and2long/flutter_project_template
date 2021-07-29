@@ -13,26 +13,78 @@ import 'package:flutter/material.dart';
 // body2        14.0  regular  0.25  (bodyText2) (default)
 // button       14.0  medium   1.25
 // caption      12.0  regular  0.4
+
+const titleSize = 18.0;
+
 class AppTheme {
   AppTheme._();
 
-  static ThemeData mainTheme(BuildContext context) {
+  static ThemeData lightTheme(BuildContext context) {
     return ThemeData(
       // 涟漪颜色
       splashColor: Colors.transparent,
-      // 按下阴影颜色
-      highlightColor: Colors.grey[200],
       dividerTheme: DividerThemeData(color: Colors.grey[300], space: 1),
+      brightness: Brightness.light,
       appBarTheme: AppBarTheme(
-        brightness: Brightness.light,
-        color: Colors.grey[50],
         centerTitle: true,
-        actionsIconTheme: IconThemeData(color: Colors.black87),
-        iconTheme: IconThemeData(color: Colors.black87),
         elevation: 1.0,
+        color: Colors.grey[50],
+        iconTheme: IconThemeData(color: Colors.black87),
+        textTheme: TextTheme(
+          headline6: Theme.of(context).textTheme.headline6!.copyWith(
+            fontSize: titleSize,
+            color: Colors.black87,
+          ),
+        ),
       ),
-      primaryTextTheme: TextTheme(headline6: TextStyle(color: Colors.black87)),
       visualDensity: VisualDensity.adaptivePlatformDensity,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          onPrimary: Colors.white,
+          shape: StadiumBorder(),
+          elevation: 0,
+          shadowColor: Colors.transparent,
+          padding: EdgeInsets.all(13),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          shape: StadiumBorder(),
+          elevation: 0,
+          shadowColor: Colors.transparent,
+          padding: EdgeInsets.all(13),
+        ),
+      ),
+    );
+  }
+
+  static ThemeData darkTheme(BuildContext context) {
+    return ThemeData(
+      // 涟漪颜色
+      splashColor: Colors.transparent,
+      dividerTheme: DividerThemeData(color: Colors.grey[300], space: 1),
+      brightness: Brightness.dark,
+      appBarTheme: AppBarTheme(
+        centerTitle: true,
+        elevation: 1.0,
+        color: Colors.grey[850],
+        iconTheme: IconThemeData(color: Colors.white),
+        textTheme: TextTheme(
+          headline6: Theme.of(context).textTheme.headline6!.copyWith(
+            fontSize: titleSize,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          onPrimary: Colors.white,
+          shape: StadiumBorder(),
+          elevation: 0,
+          shadowColor: Colors.transparent,
+        ),
+      ),
     );
   }
 }
