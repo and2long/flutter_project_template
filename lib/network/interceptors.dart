@@ -20,11 +20,14 @@ class CustomInterceptors extends Interceptor {
         data = "\nbody:${json.encode(options.data)}";
       }
     }
+    String headers = "";
+    if (options.headers.isNotEmpty) {
+      headers = '\nheaders:${json.encode(options.headers)}';
+    }
     if (options.queryParameters.isNotEmpty) {
       data += '\nqueryParameters: ${json.encode(options.queryParameters)}';
     }
-    Log.d(_tag,
-        "--> ${options.method} ${options.path}\nheaders:${json.encode(options.headers)}$data");
+    Log.d(_tag, "--> ${options.method} ${options.path}$headers$data");
     return super.onRequest(options, handler);
   }
 
