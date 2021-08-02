@@ -1,11 +1,13 @@
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 
 class ToastUtil {
   static show(String msg) {
-    Fluttertoast.showToast(
-      msg: msg,
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.CENTER,
+    showToast(
+      msg,
+      position: ToastPosition.center,
+      textPadding: EdgeInsets.all(20),
+      duration: Duration(seconds: 3),
     );
   }
 }
