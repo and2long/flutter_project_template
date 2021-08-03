@@ -1,5 +1,5 @@
 const Map<String, Object> I18N_JA = {
-  "app_name": "SpO2App",
+  "app_name": "MyApp",
 
   "delete": "削除",
   "edit": "編集",
