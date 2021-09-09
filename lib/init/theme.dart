@@ -30,11 +30,9 @@ class AppTheme {
         elevation: 1.0,
         color: Colors.grey[50],
         iconTheme: IconThemeData(color: Colors.black87),
-        textTheme: TextTheme(
-          headline6: Theme.of(context).textTheme.headline6!.copyWith(
-            fontSize: titleSize,
-            color: Colors.black87,
-          ),
+        titleTextStyle: TextStyle(
+          fontSize: titleSize,
+          color: Colors.black87,
         ),
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -69,11 +67,9 @@ class AppTheme {
         elevation: 1.0,
         color: Colors.grey[850],
         iconTheme: IconThemeData(color: Colors.white),
-        textTheme: TextTheme(
-          headline6: Theme.of(context).textTheme.headline6!.copyWith(
-            fontSize: titleSize,
-            color: Colors.white,
-          ),
+        titleTextStyle: TextStyle(
+          fontSize: titleSize,
+          color: Colors.black87,
         ),
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
