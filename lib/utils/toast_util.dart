@@ -6,8 +6,8 @@ class ToastUtil {
     showToast(
       msg,
       position: ToastPosition.center,
-      textPadding: EdgeInsets.all(20),
-      duration: Duration(seconds: 3),
+      textPadding: const EdgeInsets.all(20),
+      duration: const Duration(seconds: 3),
     );
   }
 }

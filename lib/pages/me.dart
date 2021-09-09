@@ -3,6 +3,8 @@ import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/pages/language.dart';
 
 class Me extends StatelessWidget {
+  const Me({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,8 +16,8 @@ class Me extends StatelessWidget {
           ListTile(
             title: Text(S.of(context).settingsLanguage),
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (c) => LanguagePage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => const LanguagePage()));
             },
           ),
           ListTile(

@@ -29,8 +29,8 @@ class AppTheme {
         centerTitle: true,
         elevation: 1.0,
         color: Colors.grey[50],
-        iconTheme: IconThemeData(color: Colors.black87),
-        titleTextStyle: TextStyle(
+        iconTheme: const IconThemeData(color: Colors.black87),
+        titleTextStyle: const TextStyle(
           fontSize: titleSize,
           color: Colors.black87,
         ),
@@ -39,18 +39,18 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           onPrimary: Colors.white,
-          shape: StadiumBorder(),
+          shape: const StadiumBorder(),
           elevation: 0,
           shadowColor: Colors.transparent,
-          padding: EdgeInsets.all(13),
+          padding: const EdgeInsets.all(13),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          shape: StadiumBorder(),
+          shape: const StadiumBorder(),
           elevation: 0,
           shadowColor: Colors.transparent,
-          padding: EdgeInsets.all(13),
+          padding: const EdgeInsets.all(13),
         ),
       ),
     );
@@ -66,8 +66,8 @@ class AppTheme {
         centerTitle: true,
         elevation: 1.0,
         color: Colors.grey[850],
-        iconTheme: IconThemeData(color: Colors.white),
-        titleTextStyle: TextStyle(
+        iconTheme: const IconThemeData(color: Colors.white),
+        titleTextStyle: const TextStyle(
           fontSize: titleSize,
           color: Colors.black87,
         ),
@@ -76,7 +76,7 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           onPrimary: Colors.white,
-          shape: StadiumBorder(),
+          shape: const StadiumBorder(),
           elevation: 0,
           shadowColor: Colors.transparent,
         ),

@@ -19,17 +19,19 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SPUtils.init().then((value) {
     XHttp.init();
-    runApp(Store.init(MyApp()));
+    runApp(Store.init(const MyApp()));
   });
   // 安卓透明状态栏
   if (Platform.isAndroid) {
     SystemUiOverlayStyle systemUiOverlayStyle =
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Consumer<LocaleStore>(builder: (context, localeStore, _) {
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           onGenerateTitle: (context) => S.appName,
           theme: AppTheme.lightTheme(context),
-          localizationsDelegates: [
+          localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             // 项目本地化资源代理
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
               ? S.supportedLocales.first
               : Locale(localeStore.languageCode!),
           routes: RouteMap.routes,
-          home: HomePage(),
+          home: const HomePage(),
           builder: (context, child) => GestureDetector(
             onTap: () => CommonUtils.hideKeyboard(context),
             child: child,

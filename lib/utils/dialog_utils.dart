@@ -59,7 +59,7 @@ class DialogUtils {
         builder: (context) {
           return Center(
             child: Container(
-              child: LoadingIndicator(),
+              child: const LoadingIndicator(),
               width: 100,
               height: 100,
               decoration: BoxDecoration(

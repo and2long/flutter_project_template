@@ -7,9 +7,7 @@ class SPUtils {
   static SharedPreferences? _spf;
 
   static Future<SharedPreferences?> init() async {
-    if (_spf == null) {
-      _spf = await SharedPreferences.getInstance();
-    }
+    _spf ??= await SharedPreferences.getInstance();
     return _spf;
   }
 

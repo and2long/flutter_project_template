@@ -5,7 +5,7 @@ import 'package:flutter_project_template/utils/log_utils.dart';
 
 /// 网络请求拦截器
 class CustomInterceptors extends Interceptor {
-  String _tag = 'XHttp';
+  final String _tag = 'XHttp';
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     String data = "";

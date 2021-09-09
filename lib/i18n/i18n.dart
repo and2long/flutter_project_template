@@ -37,10 +37,9 @@ class ProjectLocalizationsDelegate extends LocalizationsDelegate<S> {
 /// 本地化资源 基类
 abstract class S {
   /// 本地化资源代理对象
-  static const LocalizationsDelegate delegate =
-      const ProjectLocalizationsDelegate();
+  static const LocalizationsDelegate delegate = ProjectLocalizationsDelegate();
 
-  ///  根据上下文中的 [Locale] 取得对应的本地化资源。
+  /// 根据上下文中的 [Locale] 取得对应的本地化资源。
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S)!;
   }
@@ -48,9 +47,9 @@ abstract class S {
   /// 支持的语言。
   /// 如果本地没有保存的语言配置参数，APP会默认使用第一个作为默认语言。
   static List<Locale> supportedLocales = [
-    Locale('en'),
-    Locale('ja'),
-    Locale('zh')
+    const Locale('en'),
+    const Locale('ja'),
+    const Locale('zh')
   ];
 
   //  ================= start 不需要翻译的字段，直接赋值。 ================

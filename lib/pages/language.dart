@@ -4,6 +4,8 @@ import 'package:flutter_project_template/init/provider.dart';
 import 'package:provider/provider.dart';
 
 class LanguagePage extends StatefulWidget {
+  const LanguagePage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _LanguagePageState();

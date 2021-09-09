@@ -5,6 +5,8 @@ import 'package:flutter_project_template/pages/page1.dart';
 class HomePage extends StatefulWidget {
   static const String routeName = 'HomePage';
 
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -25,8 +27,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        physics: NeverScrollableScrollPhysics(),
-        children: [
+        physics: const NeverScrollableScrollPhysics(),
+        children: const [
           Page1(),
           Me(),
         ],
@@ -38,7 +40,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Tab1',
