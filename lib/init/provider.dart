@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/utils/sp_utils.dart';
+import 'package:provider/provider.dart';
 
-/// 状态管理
+/// 全局状态管理
 class Store {
   Store._internal();
 
-  // 全局初始化
+  // 初始化
   static init(Widget child) {
     return MultiProvider(
       providers: [
@@ -31,7 +30,6 @@ class LocaleStore with ChangeNotifier {
   set languageCode(String? languageCode) {
     if (languageCode != null && languageCode != _languageCode) {
       _languageCode = languageCode;
-      S.locale = Locale(languageCode);
       SPUtils.setLanguageCode(languageCode);
       notifyListeners();
     }

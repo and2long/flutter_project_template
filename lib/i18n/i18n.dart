@@ -4,86 +4,75 @@ import 'package:flutter_project_template/i18n/i18n_en.dart';
 import 'package:flutter_project_template/i18n/i18n_ja.dart';
 import 'package:flutter_project_template/i18n/i18n_zh.dart';
 
-class SLocalizationsDelegate extends LocalizationsDelegate<S> {
-  const SLocalizationsDelegate();
-
-  static const SLocalizationsDelegate delegate = const SLocalizationsDelegate();
+/// 项目本地化资源代理
+class ProjectLocalizationsDelegate extends LocalizationsDelegate<S> {
+  const ProjectLocalizationsDelegate();
 
   @override
   bool isSupported(Locale locale) => true;
 
   @override
   Future<S> load(Locale locale) {
-    S.locale = locale;
-    return SynchronousFuture<S>(S());
+    return SynchronousFuture<S>(getMaterialTranslation(locale));
   }
 
   @override
-  bool shouldReload(SLocalizationsDelegate old) => false;
+  bool shouldReload(ProjectLocalizationsDelegate old) => false;
+
+  /// 根据 locale 得到对应的本地化资源
+  S getMaterialTranslation(Locale locale) {
+    switch (locale.languageCode) {
+      case 'en':
+        return ProjectLocalizationsEN();
+      case 'zh':
+        return ProjectLocalizationsZH();
+      case 'ja':
+        return ProjectLocalizationsJA();
+      default:
+        return ProjectLocalizationsEN();
+    }
+  }
 }
 
-class S {
-  const S();
+/// 本地化资源 基类
+abstract class S {
+  /// 本地化资源代理对象
+  static const LocalizationsDelegate delegate =
+      const ProjectLocalizationsDelegate();
 
-  static Locale? _locale;
-
-  static set locale(Locale newLocale) {
-    S._locale = newLocale;
-  }
-
+  ///  根据上下文中的 [Locale] 取得对应的本地化资源。
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S)!;
   }
 
-  static List<Locale> get supportedLocales {
-    return const <Locale>[Locale("en"), Locale("ja"), Locale("zh")];
-  }
+  /// 支持的语言。
+  /// 如果本地没有保存的语言配置参数，APP会默认使用第一个作为默认语言。
+  static List<Locale> supportedLocales = [
+    Locale('en'),
+    Locale('ja'),
+    Locale('zh')
+  ];
 
-  Object getItem(String key) {
-    Map localData;
-    switch (_locale?.languageCode ?? '') {
-      case 'en':
-        localData = I18N_EN;
-        break;
-      case 'ja':
-        localData = I18N_JA;
-        break;
-      case 'zh':
-        localData = I18N_ZH;
-        break;
-      default:
-        localData = I18N_EN;
-        break;
-    }
-    return localData[key];
-  }
+  //  ================= start 不需要翻译的字段，直接赋值。 ================
+  static String english = 'English';
+  static String japanese = '日本語';
+  static String simpleChinese = '简体中文';
+  static Map<String, String> localeSets = {
+    'en': english,
+    'ja': japanese,
+    'zh': simpleChinese
+  };
 
-  String get appName => getItem('app_name') as String;
+  static String appName = 'AppName';
+  //  ================= end ================
 
-  /// common
-  String get delete => getItem('delete') as String;
-  String get edit => getItem('edit') as String;
-  String get cancel => getItem('cancel') as String;
-  String get ok => getItem('ok') as String;
-  String get publish => getItem('publish') as String;
-  String get save => getItem('save') as String;
-  String get send => getItem('send') as String;
-  String get search => getItem('search') as String;
-  String get skip => getItem('skip') as String;
-  String get next => getItem('next') as String;
-  String get start => getItem('start') as String;
-  String get readAndAgree => getItem('read_and_agree') as String;
-  String get privacyPolicy => getItem('privacy_policy') as String;
-  String get termsOfService => getItem('terms_of_service') as String;
-  String get collapse => getItem('collapse') as String;
-  String get expand => getItem('expand') as String;
-  String get english => 'English';
-  String get japanese => '日本語';
-  String get simpleChinese => '简体中文';
-  Map<String, String> get localeSets =>
-      {'en': english, 'ja': japanese, 'zh': simpleChinese};
-  String get date => getItem('date') as String;
-  String get time => getItem('time') as String;
+  // 需要翻译的字段追加到下面，在子类中进行赋值。
+  String get cancel;
+  String get ok;
+  String get readAndAgree;
+  String get privacyPolicy;
+  String get termsOfService;
 
-
+  String get me;
+  String get settingsLanguage;
 }

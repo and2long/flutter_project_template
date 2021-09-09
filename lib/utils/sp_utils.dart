@@ -1,3 +1,4 @@
+import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SPUtils {
@@ -18,15 +19,7 @@ class SPUtils {
   }
 
   static String? getLanguageCode() {
-    return _spf!.getString('language_code');
-  }
-
-  /// 首次引导
-  static Future<bool> setFirst(bool first) {
-    return _spf!.setBool('first', first);
-  }
-
-  static bool isFirst() {
-    return _spf!.getBool('first') ?? true;
+    return _spf!.getString('language_code') ??
+        S.supportedLocales.first.languageCode;
   }
 }
