@@ -52,7 +52,8 @@ abstract class S {
     const Locale('zh')
   ];
 
-  //  ================= start 不需要翻译的字段，直接赋值。 ================
+  // 不需要翻译的字段，直接赋值。
+  static String appName = 'AppName';
   static String english = 'English';
   static String japanese = '日本語';
   static String simpleChinese = '简体中文';
@@ -61,9 +62,6 @@ abstract class S {
     'ja': japanese,
     'zh': simpleChinese
   };
-
-  static String appName = 'AppName';
-  //  ================= end ================
 
   // 需要翻译的字段追加到下面，在子类中进行赋值。
   String get cancel;
