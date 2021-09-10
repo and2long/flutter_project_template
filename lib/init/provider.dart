@@ -35,8 +35,10 @@ class LocaleStore with ChangeNotifier {
     }
   }
 
-  void setLanguageCode(String languageCode) {
-    _languageCode = languageCode;
-    SPUtils.setLanguageCode(languageCode);
+  void setLanguageCode(String? languageCode) {
+    if (languageCode != null) {
+      _languageCode = languageCode;
+      SPUtils.setLanguageCode(languageCode);
+    }
   }
 }
