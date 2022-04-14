@@ -28,10 +28,10 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
-  provider: ^6.0.1
-  shared_preferences: ^2.0.8
+  provider: ^6.0.2
+  shared_preferences: ^2.0.13
   oktoast: ^3.1.5
-  dio: ^4.0.1
+  dio: ^4.0.6
 
 dev_dependencies:
   flutter_lints: ^1.0.4
