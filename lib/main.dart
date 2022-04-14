@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.lightTheme(context),
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             // 项目本地化资源代理
             S.delegate,
