@@ -27,21 +27,22 @@ class CustomInterceptors extends Interceptor {
     if (options.queryParameters.isNotEmpty) {
       data += '\nqueryParameters: ${json.encode(options.queryParameters)}';
     }
-    Log.d(_tag, "--> ${options.method} ${options.path}$headers$data");
+    Log.d(_tag,
+        "--> ${options.method} ${options.baseUrl}${options.path}$headers$data");
     return super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     Log.d(_tag,
-        "<-- ${response.statusCode} ${response.requestOptions.path} \nbody:${json.encode(response.data ?? '')}");
+        "<-- ${response.statusCode} ${response.requestOptions.baseUrl}${response.requestOptions.path} \nbody:${json.encode(response.data ?? '')}");
     return handler.next(response);
   }
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
     Log.d(_tag,
-        "<-- ${err.response?.statusCode} ${err.requestOptions.path}\nbody:${json.encode(err.response?.data ?? "")}");
+        "<-- ${err.response?.statusCode} ${err.requestOptions.baseUrl}${err.requestOptions.path}\nbody:${json.encode(err.response?.data ?? "")}");
     return super.onError(err, handler);
   }
 }
