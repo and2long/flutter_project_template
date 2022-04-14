@@ -3,7 +3,7 @@ import 'package:flutter_project_template/pages/me.dart';
 import 'package:flutter_project_template/pages/page1.dart';
 
 class HomePage extends StatefulWidget {
-  static const String routeName = 'HomePage';
+  static const String routeName = '/home';
 
   const HomePage({Key? key}) : super(key: key);
 
