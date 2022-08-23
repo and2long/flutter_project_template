@@ -8,7 +8,7 @@ class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
@@ -28,16 +28,16 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     return Scaffold(
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
-        children: const [
-          Page1(),
-          Me(),
-        ],
         controller: _pageController,
         onPageChanged: (index) {
           setState(() {
             _tabIndex = index;
           });
         },
+        children: const [
+          Page1(),
+          Me(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [

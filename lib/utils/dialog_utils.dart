@@ -14,9 +14,9 @@ class DialogUtils {
           content: Text(content),
           actions: <Widget>[
             TextButton(
+              onPressed: onPressed ?? () => Navigator.of(context).pop(),
               child: Text(S.of(context).ok,
                   style: TextStyle(color: Theme.of(context).primaryColor)),
-              onPressed: onPressed ?? () => Navigator.of(context).pop(),
             )
           ],
         );
@@ -41,9 +41,9 @@ class DialogUtils {
                   Navigator.pop(context, false);
                 }),
             TextButton(
+                onPressed: onPressed,
                 child: Text(S.of(context).ok,
-                    style: TextStyle(color: Theme.of(context).primaryColor)),
-                onPressed: onPressed),
+                    style: TextStyle(color: Theme.of(context).primaryColor))),
           ],
         );
       },
@@ -59,13 +59,13 @@ class DialogUtils {
         builder: (context) {
           return Center(
             child: Container(
-              child: const LoadingIndicator(),
               width: 100,
               height: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular((10.0)),
                 color: Colors.grey[300],
               ),
+              child: const LoadingIndicator(),
             ),
           );
         });
