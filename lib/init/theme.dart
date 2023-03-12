@@ -38,7 +38,7 @@ class AppTheme {
       visualDensity: VisualDensity.adaptivePlatformDensity,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          onPrimary: Colors.white,
+          foregroundColor: Colors.white,
           shape: const StadiumBorder(),
           elevation: 0,
           shadowColor: Colors.transparent,
@@ -75,7 +75,7 @@ class AppTheme {
       visualDensity: VisualDensity.adaptivePlatformDensity,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          onPrimary: Colors.white,
+          foregroundColor: Colors.white,
           shape: const StadiumBorder(),
           elevation: 0,
           shadowColor: Colors.transparent,
