@@ -40,7 +40,7 @@ class CustomInterceptors extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     Log.d(_tag,
         "<-- ${err.response?.statusCode} ${err.requestOptions.baseUrl}${err.requestOptions.path}\nbody:${json.encode(err.response?.data ?? "")}");
     return super.onError(err, handler);
