@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/pages/language.dart';
+import 'package:flutter_project_template/utils/navigator_util.dart';
 
 class Me extends StatelessWidget {
   const Me({super.key});
@@ -16,8 +17,7 @@ class Me extends StatelessWidget {
           ListTile(
             title: Text(S.of(context).settingsLanguage),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (c) => const LanguagePage()));
+              NavigatorUtil.push(context, const LanguagePage());
             },
           ),
           ListTile(
