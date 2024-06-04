@@ -3,17 +3,13 @@ import 'package:flutter_project_template/pages/me.dart';
 import 'package:flutter_project_template/pages/page1.dart';
 
 class HomePage extends StatefulWidget {
-  static const String routeName = '/home';
-
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
-  String tag = '_HomePageState';
-
   int _tabIndex = 0;
   final _pageController = PageController();
 

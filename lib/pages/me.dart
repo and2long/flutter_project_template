@@ -3,7 +3,7 @@ import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/pages/language.dart';
 
 class Me extends StatelessWidget {
-  const Me({Key? key}) : super(key: key);
+  const Me({super.key});
 
   @override
   Widget build(BuildContext context) {

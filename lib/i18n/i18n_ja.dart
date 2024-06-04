@@ -21,4 +21,10 @@ class ProjectLocalizationsJA implements S {
 
   @override
   String get settingsLanguage => "言語";
+
+  @override
+  String get dialogBtnClose => '閉じる';
+
+  @override
+  String get dialogBtnConfirm => '確認';
 }

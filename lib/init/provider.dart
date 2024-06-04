@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_template/utils/sp_utils.dart';
+import 'package:flutter_project_template/utils/sp_util.dart';
 import 'package:provider/provider.dart';
 
 /// 全局状态管理
@@ -12,7 +12,7 @@ class Store {
       providers: [
         // 国际化
         ChangeNotifierProvider.value(
-            value: LocaleStore(SPUtils.getLanguageCode())),
+            value: LocaleStore(SPUtil.getLanguageCode())),
       ],
       child: child,
     );
@@ -21,24 +21,15 @@ class Store {
 
 /// 语言
 class LocaleStore with ChangeNotifier {
-  String? _languageCode;
+  String _languageCode;
 
   LocaleStore(this._languageCode);
 
-  String? get languageCode => _languageCode;
+  String get languageCode => _languageCode;
 
-  set languageCode(String? languageCode) {
-    if (languageCode != null && languageCode != _languageCode) {
-      _languageCode = languageCode;
-      SPUtils.setLanguageCode(languageCode);
-      notifyListeners();
-    }
-  }
-
-  void setLanguageCode(String? languageCode) {
-    if (languageCode != null) {
-      _languageCode = languageCode;
-      SPUtils.setLanguageCode(languageCode);
-    }
+  void setLanguageCode(String languageCode) {
+    _languageCode = languageCode;
+    SPUtil.setLanguageCode(languageCode);
+    notifyListeners();
   }
 }

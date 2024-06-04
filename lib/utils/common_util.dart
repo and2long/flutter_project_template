@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 
-class CommonUtils {
-  CommonUtils._internal();
+class CommonUtil {
+  CommonUtil._internal();
 
   /// 判断登录密码：6~16位数字和字符组合
   static bool isLoginPassword(String input) {

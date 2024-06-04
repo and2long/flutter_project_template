@@ -14,14 +14,16 @@ import 'package:flutter/material.dart';
 // button       14.0  medium   1.25
 // caption      12.0  regular  0.4
 
-const titleSize = 18.0;
+const themeColor = Colors.blue;
+const dividerColor = Color(0xFFE8E8E8);
+const backgroundColor = Color(0xfff8f8f8);
 
 class AppTheme {
   AppTheme._();
 
   static ThemeData lightTheme(BuildContext context) {
     return ThemeData(
-      // 涟漪颜色
+      colorScheme: ColorScheme.fromSeed(seedColor: themeColor),
       splashColor: Colors.transparent,
       dividerTheme: DividerThemeData(color: Colors.grey[300], space: 1),
       brightness: Brightness.light,
@@ -30,10 +32,6 @@ class AppTheme {
         elevation: 1.0,
         color: Colors.grey[50],
         iconTheme: const IconThemeData(color: Colors.black87),
-        titleTextStyle: const TextStyle(
-          fontSize: titleSize,
-          color: Colors.black87,
-        ),
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -51,34 +49,6 @@ class AppTheme {
           elevation: 0,
           shadowColor: Colors.transparent,
           padding: const EdgeInsets.all(13),
-        ),
-      ),
-    );
-  }
-
-  static ThemeData darkTheme(BuildContext context) {
-    return ThemeData(
-      // 涟漪颜色
-      splashColor: Colors.transparent,
-      dividerTheme: DividerThemeData(color: Colors.grey[300], space: 1),
-      brightness: Brightness.dark,
-      appBarTheme: AppBarTheme(
-        centerTitle: true,
-        elevation: 1.0,
-        color: Colors.grey[850],
-        iconTheme: const IconThemeData(color: Colors.white),
-        titleTextStyle: const TextStyle(
-          fontSize: titleSize,
-          color: Colors.black87,
-        ),
-      ),
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          foregroundColor: Colors.white,
-          shape: const StadiumBorder(),
-          elevation: 0,
-          shadowColor: Colors.transparent,
         ),
       ),
     );

@@ -21,4 +21,10 @@ class ProjectLocalizationsZH implements S {
 
   @override
   String get settingsLanguage => "语言";
+
+  @override
+  String get dialogBtnClose => '关闭';
+
+  @override
+  String get dialogBtnConfirm => '确认';
 }

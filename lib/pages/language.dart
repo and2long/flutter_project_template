@@ -4,7 +4,7 @@ import 'package:flutter_project_template/init/provider.dart';
 import 'package:provider/provider.dart';
 
 class LanguagePage extends StatefulWidget {
-  const LanguagePage({Key? key}) : super(key: key);
+  const LanguagePage({super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -35,7 +35,7 @@ class _LanguagePageState extends State<LanguagePage> {
                     ? Icon(Icons.done, color: color)
                     : null,
                 onTap: () {
-                  localeModel.languageCode = key;
+                  localeModel.setLanguageCode(key);
                   Navigator.pop(context);
                 },
               ),
