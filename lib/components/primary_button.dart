@@ -31,13 +31,13 @@ class PrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         style: ButtonStyle(
           backgroundColor:
-              MaterialStateProperty.all<Color>(bgColor ?? themeColor),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              WidgetStateProperty.all<Color>(bgColor ?? themeColor),
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          padding: const MaterialStatePropertyAll<EdgeInsetsGeometry>(
+          padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(
               EdgeInsets.symmetric(vertical: 0, horizontal: 30)),
         ),
         onPressed: onPressed,
