@@ -13,6 +13,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  freezed_annotation: any
+  json_annotation: any
 
   provider: ^6.1.2
   shared_preferences: ^2.2.3
@@ -26,6 +28,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   test: ^1.24.9
+  build_runner: any
+  freezed: any
+  json_serializable: any
 
 flutter:
   uses-material-design: true
