@@ -7,3 +7,6 @@
 - iOS 包名 `PRODUCT_BUNDLE_IDENTIFIER`
 - iOS 程序名称 `CFBundleDisplayName` `CFBundleName`
 
+# 数据模型使用 freezed
+### Run the generator
+`dart run build_runner build`

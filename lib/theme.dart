@@ -33,12 +33,18 @@ class AppTheme {
         dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
       ),
       splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       dividerTheme: DividerThemeData(color: Colors.grey[300], space: 1),
       brightness: Brightness.light,
       appBarTheme: AppBarTheme(
         centerTitle: true,
         elevation: 1.0,
         color: Colors.grey[50],
+        titleTextStyle: const TextStyle(
+          fontSize: 18,
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
         iconTheme: const IconThemeData(color: Colors.black87),
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -57,6 +63,35 @@ class AppTheme {
           elevation: 0,
           shadowColor: Colors.transparent,
           padding: const EdgeInsets.all(13),
+        ),
+      ),
+      textTheme: const TextTheme(
+        titleLarge: TextStyle(
+          fontSize: 18,
+          color: Colors.black,
+          fontWeight: FontWeight.w600,
+        ),
+        titleMedium: TextStyle(
+          fontSize: 16,
+          color: Colors.black,
+          fontWeight: FontWeight.w600,
+        ),
+        titleSmall: TextStyle(
+          fontSize: 14,
+          color: Colors.black,
+          fontWeight: FontWeight.w600,
+        ),
+        bodyLarge: TextStyle(
+          fontSize: 16,
+          color: Colors.black,
+        ),
+        bodyMedium: TextStyle(
+          fontSize: 14,
+          color: Colors.black,
+        ),
+        bodySmall: TextStyle(
+          fontSize: 12,
+          color: Colors.black38,
         ),
       ),
     );
