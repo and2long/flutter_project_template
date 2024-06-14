@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_project_template/pages/me.dart';
 import 'package:flutter_project_template/pages/page1.dart';
 
@@ -12,6 +13,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   int _tabIndex = 0;
   final _pageController = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+    EasyLoading.instance
+      ..maskType = EasyLoadingMaskType.black
+      ..indicatorSize = 30.0;
+  }
 
   @override
   void dispose() {

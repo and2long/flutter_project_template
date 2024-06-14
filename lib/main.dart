@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_project_template/core/network/http.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
@@ -55,9 +56,11 @@ class _MyAppState extends State<MyApp> {
         supportedLocales: S.supportedLocales,
         locale: Locale(value.languageCode),
         home: const HomePage(),
-        builder: (context, child) => GestureDetector(
-          onTap: () => CommonUtil.hideKeyboard(context),
-          child: child,
+        builder: EasyLoading.init(
+          builder: (context, child) => GestureDetector(
+            onTap: () => CommonUtil.hideKeyboard(context),
+            child: child,
+          ),
         ),
       );
     });
