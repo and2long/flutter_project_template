@@ -1,0 +1,16 @@
+{
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+    },
+    "git.autofetch": true,
+    "git.openRepositoryInParentFolders": "never",
+    "dart.runPubGetOnPubspecChanges": "never",
+    "dart.promptToGetPackages": false,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always",
+    },
+}
