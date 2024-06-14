@@ -18,3 +18,4 @@ class ConstantsHttp {
 }
 
 const appBarHeight = kToolbarHeight;
+const tileHeight = 55.0;

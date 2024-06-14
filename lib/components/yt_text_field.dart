@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_project_template/theme.dart';
 
-class CustomTextField extends StatefulWidget {
+class YTTextField extends StatefulWidget {
   final TextEditingController controller;
   final String? hintText;
   final int? maxLines;
@@ -15,7 +15,7 @@ class CustomTextField extends StatefulWidget {
   final Widget? suffixIcon;
   final ValueChanged<String>? onSubmitted;
   final bool obscureText;
-  const CustomTextField({
+  const YTTextField({
     super.key,
     required this.controller,
     this.maxLines,
@@ -32,17 +32,17 @@ class CustomTextField extends StatefulWidget {
   });
 
   @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
+  State<YTTextField> createState() => _YTTextFieldState();
 }
 
-class _CustomTextFieldState extends State<CustomTextField> {
+class _YTTextFieldState extends State<YTTextField> {
   bool _showSufix = false;
   @override
   Widget build(BuildContext context) {
     final border = OutlineInputBorder(
       borderSide: const BorderSide(
         color: dividerColor,
-        width: 2,
+        width: 1,
       ),
       borderRadius: BorderRadius.circular(10),
     );
