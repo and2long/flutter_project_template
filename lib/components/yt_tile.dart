@@ -34,7 +34,7 @@ class YTTile extends StatelessWidget {
             Row(
               children: [
                 Offstage(
-                  offstage: leading == null || (hideLeading ?? true),
+                  offstage: leading == null || (hideLeading ?? false),
                   child: Container(
                     width: 35,
                     alignment: Alignment.centerLeft,
