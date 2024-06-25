@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project_template/utils/log_util.dart';
 
 class YTNetworkImage extends StatelessWidget {
+  final String _tag = 'YtNetworkImage';
+
   final String imageUrl;
   final double? width;
   final double? height;
@@ -39,6 +42,9 @@ class YTNetworkImage extends StatelessWidget {
               )
           : null,
       placeholder: (context, url) => defaultImage,
+      errorListener: (value) {
+        Log.e(_tag, value);
+      },
     );
   }
 }
