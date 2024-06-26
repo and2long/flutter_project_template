@@ -9,7 +9,10 @@ class MyLogInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    String data = '\nheaders: ${options.headers}';
+    String data = '';
+    if (options.headers.isNotEmpty) {
+      data += '\nheaders: ${options.headers}';
+    }
     if (options.data != null) {
       if (options.data is FormData) {
         Map m = {};
