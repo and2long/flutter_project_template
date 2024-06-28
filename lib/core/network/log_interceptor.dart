@@ -43,7 +43,12 @@ class MyLogInterceptor extends Interceptor {
     if (!path.startsWith('http')) {
       path = ConstantsHttp.baseUrl + path;
     }
-    String data = json.encode(response.data ?? '');
+    String data;
+    if (response.data is Map) {
+      data = json.encode(response.data);
+    } else {
+      data = response.data?.toString() ?? '';
+    }
     Log.d(_tag, '<-- ${response.statusCode} $path \nbody: $data');
     handler.next(response);
   }
@@ -54,7 +59,12 @@ class MyLogInterceptor extends Interceptor {
     if (!path.startsWith('http')) {
       path = ConstantsHttp.baseUrl + path;
     }
-    String data = json.encode(err.response?.data ?? '');
+    String data;
+    if (err.response?.data is Map) {
+      data = json.encode(err.response?.data);
+    } else {
+      data = err.response?.data?.toString() ?? '';
+    }
     Log.d(_tag, '<-- ${err.response?.statusCode} $path\nbody: $data');
     super.onError(err, handler);
   }
