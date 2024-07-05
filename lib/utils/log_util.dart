@@ -59,7 +59,7 @@ class Log {
         start = red;
     }
     String datetimeStr = showDatetime ? '$white${DateTime.now()} ' : '';
-    final message = '$start$datetimeStr[$tag] [${level.name}] : $content$end';
+    final message = '$start$datetimeStr[${level.name}] [$tag] : $content$end';
     log(message);
   }
 }

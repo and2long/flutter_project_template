@@ -65,7 +65,7 @@ class MyLogInterceptor extends Interceptor {
     } else {
       data = err.response?.data?.toString() ?? '';
     }
-    Log.d(_tag, '<-- ${err.response?.statusCode} $path\nbody: $data');
+    Log.e(_tag, '<-- ${err.response?.statusCode} $path\nbody: $data');
     super.onError(err, handler);
   }
 }
