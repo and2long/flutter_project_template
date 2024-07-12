@@ -2,35 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:swipeable_page_route/swipeable_page_route.dart';
 
-import 'log_util.dart';
-
 class NavigatorUtil {
-  static const String _tag = 'NavigatorUtil';
-
-  // static Future push(BuildContext context, Widget widget) {
-  //   Log.i(_tag, widget.runtimeType.toString());
-  //   return Navigator.push(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => widget,
-  //       settings: RouteSettings(name: widget.runtimeType.toString()),
-  //     ),
-  //   );
-  // }
-
-  // static Future pushReplacement(BuildContext context, Widget widget) {
-  //   Log.i(_tag, widget.runtimeType.toString());
-  //   return Navigator.pushReplacement(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => widget,
-  //       settings: RouteSettings(name: widget.runtimeType.toString()),
-  //     ),
-  //   );
-  // }
-
   static Future<dynamic> push(BuildContext context, Widget child) {
-    Log.i(_tag, child.runtimeType.toString());
     return _pushRightToLeftWithFade(context, child: child);
   }
 
@@ -57,6 +30,7 @@ class NavigatorUtil {
         type: PageTransitionType.bottomToTop,
         alignment: Alignment.topCenter,
         child: child,
+        settings: RouteSettings(name: child.runtimeType.toString()),
         duration: const Duration(milliseconds: 400),
         reverseDuration: const Duration(milliseconds: 400),
       ),
@@ -68,8 +42,10 @@ class NavigatorUtil {
     return Navigator.push(
         context,
         SwipeablePageRoute(
-            canOnlySwipeFromEdge: onlySwipeFromEdge,
-            builder: (context) => child));
+          canOnlySwipeFromEdge: onlySwipeFromEdge,
+          builder: (context) => child,
+          settings: RouteSettings(name: child.runtimeType.toString()),
+        ));
   }
 
   static Future<dynamic> _pushWithCustomFadeReplace(BuildContext context,
@@ -77,15 +53,20 @@ class NavigatorUtil {
     return Navigator.pushReplacement(
         context,
         SwipeablePageRoute(
-            canOnlySwipeFromEdge: onlySwipeFromEdge,
-            builder: (context) => child));
+          canOnlySwipeFromEdge: onlySwipeFromEdge,
+          builder: (context) => child,
+          settings: RouteSettings(name: child.runtimeType.toString()),
+        ));
   }
 
   static Future<dynamic> pushAndRemoveUntilWithFade(
       BuildContext context, Widget child) {
     return Navigator.pushAndRemoveUntil<void>(
       context,
-      MaterialPageRoute<void>(builder: (BuildContext context) => child),
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) => child,
+        settings: RouteSettings(name: child.runtimeType.toString()),
+      ),
       ModalRoute.withName('/'),
     );
   }

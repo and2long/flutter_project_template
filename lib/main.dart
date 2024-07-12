@@ -10,6 +10,7 @@ import 'package:flutter_project_template/pages/home.dart';
 import 'package:flutter_project_template/store.dart';
 import 'package:flutter_project_template/theme.dart';
 import 'package:flutter_project_template/utils/common_util.dart';
+import 'package:flutter_project_template/utils/log_util.dart';
 import 'package:flutter_project_template/utils/sp_util.dart';
 import 'package:provider/provider.dart';
 
@@ -56,6 +57,7 @@ class _MyAppState extends State<MyApp> {
         supportedLocales: S.supportedLocales,
         locale: Locale(value.languageCode),
         home: const HomePage(),
+        navigatorObservers: [MyRouteObserver()],
         builder: EasyLoading.init(
           builder: (context, child) => GestureDetector(
             onTap: () => CommonUtil.hideKeyboard(context),
@@ -64,5 +66,20 @@ class _MyAppState extends State<MyApp> {
         ),
       );
     });
+  }
+}
+
+class MyRouteObserver<R extends Route<dynamic>> extends RouteObserver<R> {
+  final String _tag = 'MyRouteObserver';
+  @override
+  void didPush(Route route, Route? previousRoute) {
+    super.didPush(route, previousRoute);
+    Log.i(_tag, 'push to route: ${route.settings.name}');
+  }
+
+  @override
+  void didPop(Route route, Route? previousRoute) {
+    super.didPop(route, previousRoute);
+    Log.i(_tag, 'pop to route: ${previousRoute?.settings.name}');
   }
 }
