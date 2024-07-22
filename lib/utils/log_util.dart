@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 
 class Log {
@@ -60,7 +58,7 @@ class Log {
     }
     String datetimeStr = showDatetime ? '$white${DateTime.now()} ' : '';
     final message = '$start$datetimeStr[${level.name}] [$tag] : $content$end';
-    log(message);
+    debugPrint(message);
   }
 }
 
