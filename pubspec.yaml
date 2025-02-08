@@ -18,10 +18,10 @@ dependencies:
   shared_preferences: ^2.5.1
   fluttertoast: ^8.2.11
   dio: ^5.8.0+1
-  page_transition: ^2.2.1
-  swipeable_page_route: ^0.4.4
   flutter_easyloading: ^3.0.5
   cached_network_image: ^3.4.1
+  flutter_ytnavigator: ^0.0.3
+  flutter_ytlog: ^0.0.2
 
 dev_dependencies:
   flutter_lints: ^4.0.0

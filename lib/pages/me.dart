@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/pages/language.dart';
-import 'package:flutter_project_template/utils/navigator_util.dart';
+import 'package:flutter_ytnavigator/flutter_ytnavigator.dart';
 
 class Me extends StatelessWidget {
   const Me({super.key});

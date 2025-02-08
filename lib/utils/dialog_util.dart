@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/main.dart';
 import 'package:flutter_project_template/theme.dart';
-import 'package:flutter_project_template/utils/log_util.dart';
+import 'package:flutter_ytlog/log.dart';
 
 class DialogUtil {
   static const String _tag = 'DialogUtil';

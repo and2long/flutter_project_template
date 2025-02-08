@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project_template/utils/log_util.dart';
+import 'package:flutter_ytlog/log.dart';
 
 class YTNetworkImage extends StatelessWidget {
   final String _tag = 'YtNetworkImage';

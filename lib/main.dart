@@ -10,8 +10,8 @@ import 'package:flutter_project_template/pages/home.dart';
 import 'package:flutter_project_template/store.dart';
 import 'package:flutter_project_template/theme.dart';
 import 'package:flutter_project_template/utils/common_util.dart';
-import 'package:flutter_project_template/utils/log_util.dart';
 import 'package:flutter_project_template/utils/sp_util.dart';
+import 'package:flutter_ytlog/log.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -74,12 +74,19 @@ class MyRouteObserver<R extends Route<dynamic>> extends RouteObserver<R> {
   @override
   void didPush(Route route, Route? previousRoute) {
     super.didPush(route, previousRoute);
-    Log.i(_tag, 'push to route: ${route.settings.name}');
+    Log.i(_tag, '⤴️ push to route: ${route.settings.name}');
   }
 
   @override
-  void didPop(Route route, Route? previousRoute) {
+  void didReplace({Route? newRoute, Route? oldRoute}) {
+    String curPageName = newRoute?.settings.name ?? '';
+    Log.i(_tag, '🔂 replace to route: $curPageName');
+  }
+
+  @override
+  void didPop(Route route, Route? previousRoute) async {
     super.didPop(route, previousRoute);
-    Log.i(_tag, 'pop to route: ${previousRoute?.settings.name}');
+    String curPageName = previousRoute?.settings.name ?? '';
+    Log.i(_tag, '⤵️ pop to route: $curPageName');
   }
 }
