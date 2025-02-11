@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_template/components/yt_tile.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/pages/language.dart';
 import 'package:flutter_ytnavigator/flutter_ytnavigator.dart';
@@ -14,18 +15,18 @@ class Me extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          ListTile(
-            title: Text(S.of(context).settingsLanguage),
+          YTTile(
+            title: S.of(context).settingsLanguage,
             onTap: () {
               NavigatorUtil.push(context, const LanguagePage());
             },
           ),
-          ListTile(
-            title: Text(S.of(context).privacyPolicy),
+          YTTile(
+            title: S.of(context).privacyPolicy,
             onTap: () {},
           ),
-          ListTile(
-            title: Text(S.of(context).termsOfService),
+          YTTile(
+            title: S.of(context).termsOfService,
             onTap: () {},
           ),
         ],
