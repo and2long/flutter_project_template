@@ -5,6 +5,7 @@ class YTTile extends StatelessWidget {
   final Widget? leading;
   final Widget? trailing;
   final bool? hideLeading;
+  final bool? showTopBorder;
   final String title;
   final String? subtitle;
   final GestureTapCallback? onTap;
@@ -16,6 +17,7 @@ class YTTile extends StatelessWidget {
     this.subtitle,
     this.onTap,
     this.hideLeading,
+    this.showTopBorder,
   });
 
   @override
@@ -26,7 +28,12 @@ class YTTile extends StatelessWidget {
         height: tileHeight,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
-          border: Border(bottom: Divider.createBorderSide(context)),
+          border: Border(
+            bottom: Divider.createBorderSide(context),
+            top: (showTopBorder ?? false)
+                ? Divider.createBorderSide(context)
+                : BorderSide.none,
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,7 +48,10 @@ class YTTile extends StatelessWidget {
                     child: leading,
                   ),
                 ),
-                Text(title),
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
               ],
             ),
             Row(
