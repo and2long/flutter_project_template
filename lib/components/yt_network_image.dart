@@ -8,28 +8,34 @@ class YTNetworkImage extends StatelessWidget {
   final String imageUrl;
   final double? width;
   final double? height;
-  final BoxFit? fit;
-  final bool? showProgressIndicator;
+  final BoxFit fit;
+  final bool showProgressIndicator;
+  final FilterQuality filterQuality;
+
   const YTNetworkImage({
     super.key,
     required this.imageUrl,
     this.width,
     this.height,
-    this.fit,
-    this.showProgressIndicator,
+    this.fit = BoxFit.contain,
+    this.showProgressIndicator = true,
+    this.filterQuality = FilterQuality.low,
   });
 
   @override
   Widget build(BuildContext context) {
-    Widget defaultImage = Container(color: const Color(0xFFF5F5F5));
+    Widget errorWidget = Container(
+      color: const Color(0xFFF5F5F5),
+      child: const Icon(Icons.error),
+    );
     return CachedNetworkImage(
-      filterQuality: FilterQuality.high,
+      filterQuality: filterQuality,
       imageUrl: imageUrl,
       width: width,
       height: height,
-      fit: fit ?? BoxFit.contain,
-      errorWidget: (context, url, error) => defaultImage,
-      progressIndicatorBuilder: (showProgressIndicator ?? false)
+      fit: fit,
+      errorWidget: (context, url, error) => errorWidget,
+      progressIndicatorBuilder: showProgressIndicator
           ? (context, url, progress) => Center(
                 child: SizedBox(
                   width: 25,
@@ -41,7 +47,6 @@ class YTNetworkImage extends StatelessWidget {
                 ),
               )
           : null,
-      placeholder: (context, url) => defaultImage,
       errorListener: (value) {
         Log.e(_tag, value);
       },
