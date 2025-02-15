@@ -39,33 +39,39 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<LocaleStore>(
-        builder: (BuildContext context, LocaleStore value, Widget? child) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        navigatorKey: MyApp.navigatorKey,
-        onGenerateTitle: (context) => S.appName,
-        theme: AppTheme.lightTheme(context),
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          // 项目本地化资源代理
-          S.delegate,
-        ],
-        // 支持的语言
-        supportedLocales: S.supportedLocales,
-        locale: Locale(value.languageCode),
-        home: const HomePage(),
-        navigatorObservers: [MyRouteObserver()],
-        // builder: (context, child) => GestureDetector(
-        //   onTap: () => CommonUtil.hideKeyboard(context),
-        // ),
-        builder: FlutterSmartDialog.init(
-          loadingBuilder: (String msg) => CustomLoadingWidget(msg: msg),
-        ),
-      );
-    });
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(
+        // 程序的字体大小不受系统字体大小影响
+        textScaler: TextScaler.noScaling,
+      ),
+      child: Consumer<LocaleStore>(
+          builder: (BuildContext context, LocaleStore value, Widget? child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          navigatorKey: MyApp.navigatorKey,
+          onGenerateTitle: (context) => S.appName,
+          theme: AppTheme.lightTheme(context),
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            // 项目本地化资源代理
+            S.delegate,
+          ],
+          // 支持的语言
+          supportedLocales: S.supportedLocales,
+          locale: Locale(value.languageCode),
+          home: const HomePage(),
+          navigatorObservers: [MyRouteObserver()],
+          // builder: (context, child) => GestureDetector(
+          //   onTap: () => CommonUtil.hideKeyboard(context),
+          // ),
+          builder: FlutterSmartDialog.init(
+            loadingBuilder: (String msg) => CustomLoadingWidget(msg: msg),
+          ),
+        );
+      }),
+    );
   }
 }
 
