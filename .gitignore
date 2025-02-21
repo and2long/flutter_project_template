@@ -57,6 +57,7 @@ Runner.app.*
 Runner.ipa
 *.mobileprovision
 *.cer
+android/app/.cxx/
 
 
 pubspec.lock
