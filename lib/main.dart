@@ -23,7 +23,8 @@ void main() {
   // 安卓透明状态栏
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent));
+      SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
+    );
   }
 }
 
@@ -45,32 +46,39 @@ class _MyAppState extends State<MyApp> {
         textScaler: TextScaler.noScaling,
       ),
       child: Consumer<LocaleStore>(
-          builder: (BuildContext context, LocaleStore value, Widget? child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          navigatorKey: MyApp.navigatorKey,
-          onGenerateTitle: (context) => S.appName,
-          theme: AppTheme.lightTheme(context),
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            // 项目本地化资源代理
-            S.delegate,
-          ],
-          // 支持的语言
-          supportedLocales: S.supportedLocales,
-          locale: Locale(value.languageCode),
-          home: const HomePage(),
-          navigatorObservers: [MyRouteObserver()],
-          // builder: (context, child) => GestureDetector(
-          //   onTap: () => CommonUtil.hideKeyboard(context),
-          // ),
-          builder: FlutterSmartDialog.init(
-            loadingBuilder: (String msg) => CustomLoadingWidget(msg: msg),
-          ),
-        );
-      }),
+        builder: (BuildContext context, LocaleStore value, Widget? child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            navigatorKey: MyApp.navigatorKey,
+            onGenerateTitle: (context) => S.appName,
+            theme: AppTheme.light,
+            darkTheme: AppTheme.dark,
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              // 项目本地化资源代理
+              S.delegate,
+            ],
+            // 支持的语言
+            supportedLocales: S.supportedLocales,
+            locale: Locale(value.languageCode),
+            home: const HomePage(),
+            navigatorObservers: [MyRouteObserver()],
+            builder: FlutterSmartDialog.init(
+              builder:
+                  (context, child) => GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
+                    },
+                    child: child ?? const SizedBox(),
+                  ),
+              loadingBuilder: (String msg) => CustomLoadingWidget(msg: msg),
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -88,10 +96,7 @@ class CustomLoadingWidget extends StatelessWidget {
         color: Colors.black87,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: const SpinKitFadingCircle(
-        color: Colors.white,
-        size: 40.0,
-      ),
+      child: const SpinKitFadingCircle(color: Colors.white, size: 40.0),
     );
   }
 }

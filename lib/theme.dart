@@ -25,75 +25,21 @@ const backgroundColor = Color(0xfff8f8f8);
 
 class AppTheme {
   AppTheme._();
-
-  static ThemeData lightTheme(BuildContext context) {
-    return ThemeData(
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: themeColor,
-        dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
-      ),
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      dividerTheme: DividerThemeData(color: Colors.grey[300], space: 1),
+  static ThemeData light = ThemeData(
+    colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.light,
-      appBarTheme: AppBarTheme(
-        centerTitle: true,
-        elevation: 1.0,
-        color: Colors.grey[50],
-        titleTextStyle: const TextStyle(
-          fontSize: 18,
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-        ),
-        iconTheme: const IconThemeData(color: Colors.black87),
-      ),
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          foregroundColor: Colors.white,
-          shape: const StadiumBorder(),
-          elevation: 0,
-          shadowColor: Colors.transparent,
-          padding: const EdgeInsets.all(13),
-        ),
-      ),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(
-          shape: const StadiumBorder(),
-          elevation: 0,
-          shadowColor: Colors.transparent,
-          padding: const EdgeInsets.all(13),
-        ),
-      ),
-      textTheme: const TextTheme(
-        titleLarge: TextStyle(
-          fontSize: 18,
-          color: Colors.black,
-          fontWeight: FontWeight.w600,
-        ),
-        titleMedium: TextStyle(
-          fontSize: 16,
-          color: Colors.black,
-          fontWeight: FontWeight.w600,
-        ),
-        titleSmall: TextStyle(
-          fontSize: 14,
-          color: Colors.black,
-          fontWeight: FontWeight.w600,
-        ),
-        bodyLarge: TextStyle(
-          fontSize: 16,
-          color: Colors.black,
-        ),
-        bodyMedium: TextStyle(
-          fontSize: 14,
-          color: Colors.black,
-        ),
-        bodySmall: TextStyle(
-          fontSize: 12,
-          color: Colors.black38,
-        ),
-      ),
-    );
-  }
+      seedColor: themeColor,
+    ),
+    appBarTheme: const AppBarTheme(centerTitle: true, elevation: 1),
+    dividerTheme: DividerThemeData(color: Colors.grey[200], thickness: 1),
+  );
+
+  static ThemeData dark = ThemeData(
+    colorScheme: ColorScheme.fromSeed(
+      brightness: Brightness.dark,
+      seedColor: themeColor,
+    ),
+    appBarTheme: const AppBarTheme(centerTitle: true, elevation: 1),
+    dividerTheme: DividerThemeData(color: Colors.grey[900], thickness: 1),
+  );
 }
