@@ -26,4 +26,19 @@ class CommonUtil {
   static void hideKeyboard(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
   }
+
+  /// 限制组件在大屏下的显示宽度。
+  static Widget generateWidgetOfWideScreen(Widget child, {double? maxWidth}) {
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        if (constraints.maxWidth > 600) {
+          return Center(
+            child: SizedBox(width: maxWidth ?? 600, child: child),
+          );
+        } else {
+          return child;
+        }
+      },
+    );
+  }
 }
