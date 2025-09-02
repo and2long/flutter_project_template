@@ -8,11 +8,12 @@ class XHttp {
 
   /// 网络请求配置
   static final Dio instance = Dio(BaseOptions(baseUrl: ConstantsHttp.baseUrl));
-  static final Dio authInstance =
-      Dio(BaseOptions(baseUrl: ConstantsHttp.baseUrl));
+  static final Dio authInstance = Dio(
+    BaseOptions(baseUrl: ConstantsHttp.baseUrl),
+  );
 
   /// 初始化dio
-  static init() {
+  static void init() {
     //添加拦截器
     instance.interceptors.add(AuthInterceptor());
     instance.interceptors.add(MyLogInterceptor());

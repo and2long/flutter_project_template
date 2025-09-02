@@ -7,12 +7,13 @@ class Store {
   Store._internal();
 
   // 初始化
-  static init(Widget child) {
+  static MultiProvider init(Widget child) {
     return MultiProvider(
       providers: [
         // 国际化
         ChangeNotifierProvider.value(
-            value: LocaleStore(SPUtil.getLanguageCode())),
+          value: LocaleStore(SPUtil.getLanguageCode()),
+        ),
       ],
       child: child,
     );

@@ -8,24 +8,26 @@ class DialogUtil {
   static const String _tag = 'DialogUtil';
   DialogUtil._internal();
 
-  static final _shape =
-      RoundedRectangleBorder(borderRadius: BorderRadius.circular(10));
+  static final _shape = RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(10),
+  );
 
   static Widget _buildDialogContent(String content) {
     return Container(
       padding: const EdgeInsets.only(top: 10),
-      child: Text(
-        content,
-        textAlign: TextAlign.center,
-      ),
+      child: Text(content, textAlign: TextAlign.center),
     );
   }
 
   /// 显示提示框：内容+取消按钮+确定按钮，确定按钮需要点击事件。
-  static _showAlertDialog2(
-      BuildContext context, String content, VoidCallback onPressed) {
-    TextStyle textStyle =
-        Theme.of(context).textTheme.bodyMedium!.copyWith(color: themeColor);
+  static void _showAlertDialog2(
+    BuildContext context,
+    String content,
+    VoidCallback onPressed,
+  ) {
+    TextStyle textStyle = Theme.of(
+      context,
+    ).textTheme.bodyMedium!.copyWith(color: themeColor);
 
     showDialog(
       barrierDismissible: false,
@@ -48,13 +50,10 @@ class DialogUtil {
                 ),
                 TextButton(
                   onPressed: onPressed,
-                  child: Text(
-                    S.of(context).dialogBtnConfirm,
-                    style: textStyle,
-                  ),
+                  child: Text(S.of(context).dialogBtnConfirm, style: textStyle),
                 ),
               ],
-            )
+            ),
           ],
         );
       },
@@ -62,8 +61,11 @@ class DialogUtil {
   }
 
   /// 显示提示框：内容+关闭按钮
-  static _showAlertDialog(BuildContext context, String content,
-      {VoidCallback? onPressed}) {
+  static void _showAlertDialog(
+    BuildContext context,
+    String content, {
+    VoidCallback? onPressed,
+  }) {
     showDialog(
       barrierDismissible: false,
       context: context,
@@ -78,10 +80,9 @@ class DialogUtil {
                 onPressed: onPressed ?? () => Navigator.pop(context),
                 child: Text(
                   S.of(context).dialogBtnClose,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall
-                      ?.copyWith(color: themeColor),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(color: themeColor),
                 ),
               ),
             ),
@@ -92,7 +93,7 @@ class DialogUtil {
   }
 
   /// 显示自定义提示框
-  static showCustomDialog(BuildContext context, Widget child) {
+  static void showCustomDialog(BuildContext context, Widget child) {
     showDialog(
       barrierDismissible: false,
       context: context,
@@ -120,11 +121,7 @@ class DialogUtil {
   }) {
     BuildContext? context = MyApp.navigatorKey.currentContext;
     if (context != null) {
-      _showAlertDialog2(
-        context,
-        content,
-        () => onPositiveBtnPressed(),
-      );
+      _showAlertDialog2(context, content, () => onPositiveBtnPressed());
     } else {
       Log.e(_tag, 'global key is null');
     }

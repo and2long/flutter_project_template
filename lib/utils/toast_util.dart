@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 // https://pub-web.flutter-io.cn/packages/fluttertoast#toast-with-no-build-context-android--ios
 class ToastUtil {
   ToastUtil._();
-  static show(String? msg) {
+  static void show(String? msg) {
     Fluttertoast.showToast(
       msg: msg ?? '',
       toastLength: Toast.LENGTH_LONG,
