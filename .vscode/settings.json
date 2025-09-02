@@ -1,4 +1,5 @@
 {
+    "dart.flutterSdkPath": "~/.asdf/installs/flutter/3.32.8-stable",
     "[dart]": {
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
