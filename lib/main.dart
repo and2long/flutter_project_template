@@ -11,7 +11,7 @@ import 'package:flutter_project_template/theme.dart';
 import 'package:flutter_project_template/utils/sp_util.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_ytlog/log.dart';
+import 'package:flutter_ytlog/flutter_ytlog.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -66,14 +66,13 @@ class _MyAppState extends State<MyApp> {
             home: const HomePage(),
             navigatorObservers: [MyRouteObserver()],
             builder: FlutterSmartDialog.init(
-              builder:
-                  (context, child) => GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: () {
-                      FocusManager.instance.primaryFocus?.unfocus();
-                    },
-                    child: child ?? const SizedBox(),
-                  ),
+              builder: (context, child) => GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                child: child ?? const SizedBox(),
+              ),
               loadingBuilder: (String msg) => CustomLoadingWidget(msg: msg),
             ),
           );

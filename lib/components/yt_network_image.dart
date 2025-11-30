@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ytlog/log.dart';
+import 'package:flutter_ytlog/flutter_ytlog.dart';
 
 class YTNetworkImage extends StatelessWidget {
   final String _tag = 'YtNetworkImage';
@@ -37,15 +37,15 @@ class YTNetworkImage extends StatelessWidget {
       errorWidget: (context, url, error) => errorWidget,
       progressIndicatorBuilder: showProgressIndicator
           ? (context, url, progress) => Center(
-                child: SizedBox(
-                  width: 25,
-                  height: 25,
-                  child: CircularProgressIndicator(
-                    value: progress.progress,
-                    strokeWidth: 2,
-                  ),
+              child: SizedBox(
+                width: 25,
+                height: 25,
+                child: CircularProgressIndicator(
+                  value: progress.progress,
+                  strokeWidth: 2,
                 ),
-              )
+              ),
+            )
           : null,
       errorListener: (value) {
         Log.e(_tag, value);
