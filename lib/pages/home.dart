@@ -11,45 +11,26 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   int _tabIndex = 0;
-  final _pageController = PageController();
-
-  @override
-  void dispose() {
-    super.dispose();
-    _pageController.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            _tabIndex = index;
-          });
-        },
-        children: const [
-          Page1(),
-          Me(),
-        ],
-      ),
+      body: IndexedStack(index: _tabIndex, children: const [Page1(), Me()]),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
             label: 'Tab1',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person_outline_rounded),
+            activeIcon: Icon(Icons.person),
             label: 'Tab2',
           ),
         ],
         currentIndex: _tabIndex,
-        onTap: (index) {
-          _pageController.jumpToPage(index);
-        },
+        onTap: (index) => setState(() => _tabIndex = index),
       ),
     );
   }
