@@ -40,10 +40,7 @@ class _YTTextFieldState extends State<YTTextField> {
   @override
   Widget build(BuildContext context) {
     final border = OutlineInputBorder(
-      borderSide: const BorderSide(
-        color: dividerColor,
-        width: 1,
-      ),
+      borderSide: const BorderSide(color: dividerColor, width: 1),
       borderRadius: BorderRadius.circular(10),
     );
     return Container(
@@ -54,7 +51,8 @@ class _YTTextFieldState extends State<YTTextField> {
         inputFormatters: widget.inputFormatters,
         keyboardType: widget.keyboardType,
         autocorrect: false,
-        textInputAction: widget.textInputAction ??
+        textInputAction:
+            widget.textInputAction ??
             ((widget.maxLines ?? 1) > 1
                 ? TextInputAction.newline
                 : TextInputAction.next),
@@ -71,7 +69,8 @@ class _YTTextFieldState extends State<YTTextField> {
         },
         decoration: InputDecoration(
           prefixIcon: widget.prefixIcon,
-          suffixIcon: widget.suffixIcon ??
+          suffixIcon:
+              widget.suffixIcon ??
               (_showSufix
                   ? IconButton(
                       onPressed: () {
@@ -83,13 +82,14 @@ class _YTTextFieldState extends State<YTTextField> {
                       icon: const Icon(Icons.clear),
                     )
                   : null),
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 16,
+          ),
           hintText: widget.hintText,
-          hintStyle: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(color: Colors.grey),
+          hintStyle: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
           enabledBorder: border,
           focusedBorder: border,
         ),

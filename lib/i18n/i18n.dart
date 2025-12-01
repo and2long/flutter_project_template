@@ -46,7 +46,7 @@ abstract class S {
   static List<Locale> supportedLocales = [
     const Locale('en'),
     const Locale('ja'),
-    const Locale('zh')
+    const Locale('zh'),
   ];
 
   // 不需要翻译的字段，直接赋值。

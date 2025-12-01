@@ -48,20 +48,16 @@ class YTTile extends StatelessWidget {
                     child: leading,
                   ),
                 ),
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
+                Text(title, style: Theme.of(context).textTheme.bodyLarge),
               ],
             ),
             Row(
               children: [
                 Text(
                   subtitle ?? '',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Colors.black54),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium!.copyWith(color: Colors.black54),
                 ),
                 Container(
                   margin: const EdgeInsets.only(left: 8),

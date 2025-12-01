@@ -10,9 +10,7 @@ class Me extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(S.of(context).me),
-      ),
+      appBar: AppBar(title: Text(S.of(context).me)),
       body: ListView(
         children: [
           YTTile(
@@ -21,14 +19,8 @@ class Me extends StatelessWidget {
               NavigatorUtil.push(context, const LanguagePage());
             },
           ),
-          YTTile(
-            title: S.of(context).privacyPolicy,
-            onTap: () {},
-          ),
-          YTTile(
-            title: S.of(context).termsOfService,
-            onTap: () {},
-          ),
+          YTTile(title: S.of(context).privacyPolicy, onTap: () {}),
+          YTTile(title: S.of(context).termsOfService, onTap: () {}),
         ],
       ),
     );

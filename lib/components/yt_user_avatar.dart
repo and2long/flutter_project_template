@@ -16,11 +16,7 @@ class YTUserAvatar extends StatelessWidget {
       margin: margin,
       child: ClipOval(
         child: url == null || url!.isEmpty
-            ? Container(
-                width: rSize,
-                height: rSize,
-                color: dividerColor,
-              )
+            ? Container(width: rSize, height: rSize, color: dividerColor)
             : YTNetworkImage(
                 fit: BoxFit.cover,
                 imageUrl: url!,

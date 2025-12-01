@@ -7,7 +7,8 @@ class Page1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-          child: Text('Edit lib/pages/home.dart to start your project.')),
+        child: Text('Edit lib/pages/home.dart to start your project.'),
+      ),
     );
   }
 }

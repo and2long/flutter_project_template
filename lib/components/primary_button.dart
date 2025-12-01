@@ -30,24 +30,23 @@ class PrimaryButton extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor:
-              WidgetStateProperty.all<Color>(bgColor ?? themeColor),
+          backgroundColor: WidgetStateProperty.all<Color>(
+            bgColor ?? themeColor,
+          ),
           shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
           padding: const WidgetStatePropertyAll<EdgeInsetsGeometry>(
-              EdgeInsets.symmetric(vertical: 0, horizontal: 30)),
+            EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+          ),
         ),
         onPressed: onPressed,
         child: Text(
           textAlign: TextAlign.center,
           text,
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(color: textColor ?? Colors.white),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(color: textColor ?? Colors.white),
         ),
       ),
     );
