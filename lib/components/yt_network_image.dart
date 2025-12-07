@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project_template/utils/common_util.dart';
 import 'package:flutter_ytlog/flutter_ytlog.dart';
 
 class YTNetworkImage extends StatelessWidget {
@@ -28,8 +29,10 @@ class YTNetworkImage extends StatelessWidget {
       color: const Color(0xFFF5F5F5),
       child: const Icon(Icons.error),
     );
+    final String? cacheKey = CommonUtil.extractCacheKey(imageUrl);
     return CachedNetworkImage(
       filterQuality: filterQuality,
+      cacheKey: cacheKey,
       imageUrl: imageUrl,
       width: width,
       height: height,

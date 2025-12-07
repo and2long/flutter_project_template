@@ -41,4 +41,20 @@ class CommonUtil {
       },
     );
   }
+
+  static String? extractCacheKey(String? url) {
+    if (url == null || url.isEmpty) {
+      return null;
+    }
+
+    try {
+      final uri = Uri.parse(url);
+      if (uri.pathSegments.isEmpty) {
+        return null;
+      }
+      return uri.pathSegments.last;
+    } catch (_) {
+      return null;
+    }
+  }
 }
