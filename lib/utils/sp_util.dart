@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_project_template/constants.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,8 +28,17 @@ class SPUtil {
   }
 
   static String getLanguageCode() {
-    return _spf.getString(ConstantsKeyCache.keyLanguageCode) ??
-        S.supportedLocales.first.languageCode;
+    final String? saved = _spf.getString(ConstantsKeyCache.keyLanguageCode);
+    if (saved != null && saved.isNotEmpty) return saved;
+
+    final Locale systemLocale =
+        WidgetsBinding.instance.platformDispatcher.locale;
+    final String systemCode = systemLocale.languageCode;
+    final bool isSupported = S.supportedLocales.any(
+      (locale) => locale.languageCode == systemCode,
+    );
+
+    return isSupported ? systemCode : 'en';
   }
 
   static Future<bool> saveAccessToken(String? token) {

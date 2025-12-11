@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project_template/i18n/i18n_en.dart';
 import 'package:flutter_project_template/i18n/i18n_ja.dart';
 import 'package:flutter_project_template/i18n/i18n_zh.dart';
 
@@ -21,12 +22,14 @@ class ProjectLocalizationsDelegate extends LocalizationsDelegate<S> {
   /// 根据 locale 得到对应的本地化资源
   S getMaterialTranslation(Locale locale) {
     switch (locale.languageCode) {
+      case 'en':
+        return ProjectLocalizationsEN();
       case 'zh':
         return ProjectLocalizationsZH();
       case 'ja':
         return ProjectLocalizationsJA();
       default:
-        return ProjectLocalizationsJA();
+        return ProjectLocalizationsEN();
     }
   }
 }
@@ -50,10 +53,14 @@ abstract class S {
   ];
 
   // 不需要翻译的字段，直接赋值。
-  static String appName = 'AppName';
   static String japanese = '日本語';
   static String simpleChinese = '简体中文';
-  static Map<String, String> localeSets = {'ja': japanese, 'zh': simpleChinese};
+  static String english = 'English';
+  static Map<String, String> localeSets = {
+    'en': english,
+    'ja': japanese,
+    'zh': simpleChinese,
+  };
 
   // 需要翻译的字段追加到下面，在子类中进行赋值。
   String get cancel;

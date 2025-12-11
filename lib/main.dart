@@ -50,7 +50,6 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             navigatorKey: MyApp.navigatorKey,
-            onGenerateTitle: (context) => S.appName,
             theme: AppTheme.light,
             darkTheme: AppTheme.dark,
             localizationsDelegates: const [
