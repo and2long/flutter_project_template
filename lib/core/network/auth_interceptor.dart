@@ -10,12 +10,8 @@ class AuthInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers.putIfAbsent(
-      "Accept-Language",
-      () => SPUtil.getLanguageCode(),
-    );
-    options.headers.putIfAbsent(
       "Authorization",
-      () => '${SPUtil.getTokenType()} ${SPUtil.getAccessToken()}',
+      () => 'Bearer ${SPUtil.getAccessToken()}',
     );
     super.onRequest(options, handler);
   }

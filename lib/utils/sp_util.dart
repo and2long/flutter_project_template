@@ -39,14 +39,6 @@ class SPUtil {
     return _spf.getString(ConstantsKeyCache.keyAccessToken);
   }
 
-  static Future<bool> saveTokenType(String? value) {
-    return _spf.setString(ConstantsKeyCache.keyTokenType, value ?? '');
-  }
-
-  static String getTokenType() {
-    return _spf.getString(ConstantsKeyCache.keyTokenType) ?? '';
-  }
-
   static Future<bool> saveRefreshToken(String? token) {
     return _spf.setString(ConstantsKeyCache.keyRefreshToken, token ?? '');
   }
