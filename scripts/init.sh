@@ -60,6 +60,9 @@ echo "生成的包名为：$package_name"
 
 echo "开始初始化项目..."
 
+# 将 android/fastlane/Appfile 中的 com.example.flutter_project_template 改为包名
+sed "${SED_INPLACE[@]}" "s/com.example.flutter_project_template/$package_name/g" android/fastlane/Appfile
+
 # 将 pubspec.yaml 中的 flutter_project_template 替换为项目名
 sed "${SED_INPLACE[@]}" "s/flutter_project_template/$project_name/g" pubspec.yaml
 
