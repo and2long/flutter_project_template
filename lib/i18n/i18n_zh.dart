@@ -41,6 +41,9 @@ class ProjectLocalizationsZH implements S {
   String get settingsThemeSystem => "跟随系统";
 
   @override
+  String get settingsVersion => "当前版本";
+
+  @override
   String get dialogBtnClose => '关闭';
 
   @override

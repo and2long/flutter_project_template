@@ -78,6 +78,8 @@ abstract class S {
   String get settingsThemeDark;
   String get settingsThemeSystem;
 
+  String get settingsVersion;
+
   String get dialogBtnClose;
   String get dialogBtnConfirm;
 }

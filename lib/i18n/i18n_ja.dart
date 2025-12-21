@@ -41,6 +41,9 @@ class ProjectLocalizationsJA implements S {
   String get settingsThemeSystem => "システムのデフォルト";
 
   @override
+  String get settingsVersion => "バージョン";
+
+  @override
   String get dialogBtnClose => '閉じる';
 
   @override

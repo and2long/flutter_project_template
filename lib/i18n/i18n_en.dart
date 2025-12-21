@@ -41,6 +41,9 @@ class ProjectLocalizationsEN implements S {
   String get settingsThemeSystem => "System Default";
 
   @override
+  String get settingsVersion => "Version";
+
+  @override
   String get dialogBtnClose => 'Close';
 
   @override

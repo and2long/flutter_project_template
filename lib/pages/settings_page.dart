@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/utils/sp_util.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class ThemeController {
   ThemeController._();
@@ -46,12 +47,21 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   late ThemeMode _themeMode;
   Locale? _locale;
+  String _version = '';
 
   @override
   void initState() {
     super.initState();
     _themeMode = ThemeController.themeNotifier.value;
     _locale = LanguageController.localeNotifier.value;
+    _loadVersion();
+  }
+
+  Future<void> _loadVersion() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() {
+      _version = '${info.version}+${info.buildNumber}';
+    });
   }
 
   @override
@@ -100,6 +110,15 @@ class _SettingsPageState extends State<SettingsPage> {
                     onTap: _showLanguageSelector,
                   ),
                 ],
+              ),
+            ),
+            const SizedBox(height: 24),
+            Center(
+              child: Text(
+                '${S.of(context).settingsVersion} $_version',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                ),
               ),
             ),
           ],
