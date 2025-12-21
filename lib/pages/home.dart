@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_template/pages/me.dart';
-import 'package:flutter_project_template/pages/page1.dart';
+import 'package:flutter_project_template/pages/settings_page.dart';
+import 'package:flutter_ytnavigator/flutter_ytnavigator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,27 +10,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
-  int _tabIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(index: _tabIndex, children: const [Page1(), Me()]),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
-            label: 'Tab1',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline_rounded),
-            activeIcon: Icon(Icons.person),
-            label: 'Tab2',
+      appBar: AppBar(
+        title: const Text('Home'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              NavigatorUtil.push(context, SettingsPage());
+            },
           ),
         ],
-        currentIndex: _tabIndex,
-        onTap: (index) => setState(() => _tabIndex = index),
+      ),
+      body: Center(
+        child: Text('Edit lib/pages/home.dart to start your project.'),
       ),
     );
   }
