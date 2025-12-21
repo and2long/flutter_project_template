@@ -20,7 +20,25 @@ class ProjectLocalizationsJA implements S {
   String get me => "アカウント";
 
   @override
+  String get settingsTitle => "設定";
+
+  @override
   String get settingsLanguage => "言語";
+
+  @override
+  String get settingsLanguageSystem => "システムのデフォルト";
+
+  @override
+  String get settingsTheme => "テーマ";
+
+  @override
+  String get settingsThemeLight => "ライト";
+
+  @override
+  String get settingsThemeDark => "ダーク";
+
+  @override
+  String get settingsThemeSystem => "システムのデフォルト";
 
   @override
   String get dialogBtnClose => '閉じる';

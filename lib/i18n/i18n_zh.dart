@@ -20,7 +20,25 @@ class ProjectLocalizationsZH implements S {
   String get me => "我的";
 
   @override
+  String get settingsTitle => "设置";
+
+  @override
   String get settingsLanguage => "语言";
+
+  @override
+  String get settingsLanguageSystem => "跟随系统";
+
+  @override
+  String get settingsTheme => "主题";
+
+  @override
+  String get settingsThemeLight => "浅色";
+
+  @override
+  String get settingsThemeDark => "深色";
+
+  @override
+  String get settingsThemeSystem => "跟随系统";
 
   @override
   String get dialogBtnClose => '关闭';

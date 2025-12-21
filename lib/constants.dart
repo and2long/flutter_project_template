@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ConstantsKeyCache {
   ConstantsKeyCache._();
   static String keyLanguageCode = 'LANGUAGE_CODE';
+  static String keyThemeMode = 'THEME_MODE';
   static String keyAccessToken = "ACCESS_TOKEN";
   static String keyRefreshToken = "REFRESH_TOKEN";
   static String keyFCMToken = "FCM_TOKEN";

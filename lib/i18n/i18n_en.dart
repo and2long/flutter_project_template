@@ -20,7 +20,25 @@ class ProjectLocalizationsEN implements S {
   String get me => "Profile";
 
   @override
+  String get settingsTitle => "Settings";
+
+  @override
   String get settingsLanguage => "Language";
+
+  @override
+  String get settingsLanguageSystem => "System Default";
+
+  @override
+  String get settingsTheme => "Theme";
+
+  @override
+  String get settingsThemeLight => "Light";
+
+  @override
+  String get settingsThemeDark => "Dark";
+
+  @override
+  String get settingsThemeSystem => "System Default";
 
   @override
   String get dialogBtnClose => 'Close';
