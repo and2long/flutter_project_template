@@ -148,14 +148,23 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
               ),
-              ...options.map(
-                (option) => RadioListTile<ThemeMode>(
-                  value: option.key,
-                  groupValue: _themeMode,
-                  onChanged: (mode) {
+              RadioGroup<ThemeMode>(
+                groupValue: _themeMode,
+                onChanged: (mode) {
+                  if (mode != null) {
                     Navigator.of(context).pop(mode);
-                  },
-                  title: Text(option.value),
+                  }
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: options
+                      .map(
+                        (option) => RadioListTile<ThemeMode>(
+                          value: option.key,
+                          title: Text(option.value),
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
               const SizedBox(height: 12),
@@ -213,14 +222,21 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
               ),
-              ...options.map(
-                (option) => RadioListTile<Locale?>(
-                  value: option.key,
-                  groupValue: _locale,
-                  onChanged: (value) {
-                    Navigator.of(context).pop(_LocaleSelection(value));
-                  },
-                  title: Text(option.value),
+              RadioGroup<Locale?>(
+                groupValue: _locale,
+                onChanged: (value) {
+                  Navigator.of(context).pop(_LocaleSelection(value));
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: options
+                      .map(
+                        (option) => RadioListTile<Locale?>(
+                          value: option.key,
+                          title: Text(option.value),
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
               const SizedBox(height: 12),
