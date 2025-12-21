@@ -192,7 +192,8 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
     ];
 
-    final selectedLocale = await showModalBottomSheet<Locale?>(
+    // 使用包装类来区分"选择了系统默认(null)"和"未选择直接关闭"
+    final selection = await showModalBottomSheet<_LocaleSelection>(
       context: context,
       builder: (context) {
         final theme = Theme.of(context);
@@ -217,7 +218,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   value: option.key,
                   groupValue: _locale,
                   onChanged: (value) {
-                    Navigator.of(context).pop(value);
+                    Navigator.of(context).pop(_LocaleSelection(value));
                   },
                   title: Text(option.value),
                 ),
@@ -229,13 +230,23 @@ class _SettingsPageState extends State<SettingsPage> {
       },
     );
 
-    if (selectedLocale != null
-        ? selectedLocale.languageCode != _locale?.languageCode
-        : _locale != null) {
-      setState(() {
-        _locale = selectedLocale;
-      });
-      await LanguageController.updateLocale(selectedLocale);
+    // 只有用户明确选择了选项才更新
+    if (selection != null) {
+      final selectedLocale = selection.locale;
+      final isSameLocale =
+          selectedLocale?.languageCode == _locale?.languageCode;
+      if (!isSameLocale) {
+        setState(() {
+          _locale = selectedLocale;
+        });
+        await LanguageController.updateLocale(selectedLocale);
+      }
     }
   }
+}
+
+/// 用于区分"选择了系统默认(null)"和"未选择直接关闭弹窗"
+class _LocaleSelection {
+  final Locale? locale;
+  const _LocaleSelection(this.locale);
 }
