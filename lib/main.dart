@@ -5,21 +5,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_project_template/core/network/http.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
-import 'package:flutter_project_template/pages/home.dart';
-import 'package:flutter_project_template/pages/settings_page.dart';
+import 'package:flutter_project_template/pages/home_page.dart';
 import 'package:flutter_project_template/store.dart';
 import 'package:flutter_project_template/theme.dart';
 import 'package:flutter_project_template/utils/sp_util.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_ytlog/flutter_ytlog.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SPUtil.init();
-  // 初始化主题和语言控制器
-  ThemeController.init(SPUtil.getThemeMode());
-  LanguageController.init(SPUtil.getLocale());
   XHttp.init();
   runApp(Store.init(const MyApp()));
   // 安卓透明状态栏
@@ -47,42 +44,36 @@ class _MyAppState extends State<MyApp> {
         // 程序的字体大小不受系统字体大小影响
         textScaler: TextScaler.noScaling,
       ),
-      child: ValueListenableBuilder<ThemeMode>(
-        valueListenable: ThemeController.themeNotifier,
-        builder: (context, themeMode, _) {
-          return ValueListenableBuilder<Locale?>(
-            valueListenable: LanguageController.localeNotifier,
-            builder: (context, locale, _) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                navigatorKey: MyApp.navigatorKey,
-                theme: AppTheme.light,
-                darkTheme: AppTheme.dark,
-                themeMode: themeMode,
-                localizationsDelegates: const [
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  // 项目本地化资源代理
-                  S.delegate,
-                ],
-                // 支持的语言
-                supportedLocales: S.supportedLocales,
-                locale: locale,
-                home: const HomePage(),
-                navigatorObservers: [MyRouteObserver()],
-                builder: FlutterSmartDialog.init(
-                  builder: (context, child) => GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: () {
-                      FocusManager.instance.primaryFocus?.unfocus();
-                    },
-                    child: child ?? const SizedBox(),
-                  ),
-                  loadingBuilder: (String msg) => CustomLoadingWidget(msg: msg),
-                ),
-              );
-            },
+      child: Consumer<ConfigStore>(
+        builder: (context, config, _) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            navigatorKey: MyApp.navigatorKey,
+            theme: AppTheme.light,
+            darkTheme: AppTheme.dark,
+            themeMode: config.themeMode,
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              // 项目本地化资源代理
+              S.delegate,
+            ],
+            // 支持的语言
+            supportedLocales: S.supportedLocales,
+            locale: config.locale,
+            home: const HomePage(),
+            navigatorObservers: [MyRouteObserver()],
+            builder: FlutterSmartDialog.init(
+              builder: (context, child) => GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                child: child ?? const SizedBox(),
+              ),
+              loadingBuilder: (String msg) => CustomLoadingWidget(msg: msg),
+            ),
           );
         },
       ),

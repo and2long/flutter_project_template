@@ -22,25 +22,6 @@ class SPUtil {
     return _spf.getBool(ConstantsKeyCache.keyIsFirst) ?? true;
   }
 
-  /// 语言
-  static Future<bool> setLanguageCode(String languageCode) {
-    return _spf.setString(ConstantsKeyCache.keyLanguageCode, languageCode);
-  }
-
-  static String getLanguageCode() {
-    final String? saved = _spf.getString(ConstantsKeyCache.keyLanguageCode);
-    if (saved != null && saved.isNotEmpty) return saved;
-
-    final Locale systemLocale =
-        WidgetsBinding.instance.platformDispatcher.locale;
-    final String systemCode = systemLocale.languageCode;
-    final bool isSupported = S.supportedLocales.any(
-      (locale) => locale.languageCode == systemCode,
-    );
-
-    return isSupported ? systemCode : 'en';
-  }
-
   /// Locale 设置（可为 null 表示跟随系统）
   static Future<bool> setLocale(String? languageCode) {
     if (languageCode == null) {
@@ -51,8 +32,17 @@ class SPUtil {
 
   static Locale? getLocale() {
     final String? saved = _spf.getString(ConstantsKeyCache.keyLanguageCode);
-    if (saved == null || saved.isEmpty) return null;
-    return Locale(saved);
+    if (saved != null && saved.isNotEmpty) return Locale(saved);
+
+    // 跟随系统，自动匹配支持的语言
+    final Locale systemLocale =
+        WidgetsBinding.instance.platformDispatcher.locale;
+    final String systemCode = systemLocale.languageCode;
+    final bool isSupported = S.supportedLocales.any(
+      (locale) => locale.languageCode == systemCode,
+    );
+
+    return isSupported ? Locale(systemCode) : null;
   }
 
   /// 主题模式
@@ -86,11 +76,9 @@ class SPUtil {
   }
 
   static void clean() async {
-    // 清空所有本地数据，只保存是否是首次进入app的状态和语言设置
+    // 清空所有本地数据，只保存是否是首次进入app的状态
     bool value = isFirst();
-    String languageCode = getLanguageCode();
     await _spf.clear();
     await setFirst(value);
-    await setLanguageCode(languageCode);
   }
 }

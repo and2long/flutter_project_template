@@ -10,9 +10,12 @@ class Store {
   static MultiProvider init(Widget child) {
     return MultiProvider(
       providers: [
-        // 国际化
-        ChangeNotifierProvider.value(
-          value: LocaleStore(SPUtil.getLanguageCode()),
+        // 配置中心 (语言 + 主题)
+        ChangeNotifierProvider(
+          create: (_) => ConfigStore(
+            locale: SPUtil.getLocale(),
+            themeMode: SPUtil.getThemeMode(),
+          ),
         ),
       ],
       child: child,
@@ -20,17 +23,29 @@ class Store {
   }
 }
 
-/// 语言
-class LocaleStore with ChangeNotifier {
-  String _languageCode;
+/// 全局配置
+class ConfigStore with ChangeNotifier {
+  Locale? _locale;
+  ThemeMode _themeMode;
 
-  LocaleStore(this._languageCode);
+  ConfigStore({Locale? locale, ThemeMode themeMode = ThemeMode.system})
+    : _locale = locale,
+      _themeMode = themeMode;
 
-  String get languageCode => _languageCode;
+  Locale? get locale => _locale;
+  ThemeMode get themeMode => _themeMode;
 
-  void setLanguageCode(String languageCode) {
-    _languageCode = languageCode;
-    SPUtil.setLanguageCode(languageCode);
+  void setLocale(Locale? locale) {
+    if (_locale?.toLanguageTag() == locale?.toLanguageTag()) return;
+    _locale = locale;
+    SPUtil.setLocale(locale?.languageCode);
+    notifyListeners();
+  }
+
+  void setThemeMode(ThemeMode mode) {
+    if (_themeMode == mode) return;
+    _themeMode = mode;
+    SPUtil.setThemeMode(mode);
     notifyListeners();
   }
 }

@@ -1,41 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
-import 'package:flutter_project_template/utils/sp_util.dart';
+import 'package:flutter_project_template/store.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-
-class ThemeController {
-  ThemeController._();
-
-  static late final ValueNotifier<ThemeMode> themeNotifier;
-
-  static void init(ThemeMode initialMode) {
-    themeNotifier = ValueNotifier<ThemeMode>(initialMode);
-  }
-
-  static Future<void> updateThemeMode(ThemeMode mode) async {
-    if (themeNotifier.value == mode) return;
-    themeNotifier.value = mode;
-    await SPUtil.setThemeMode(mode);
-  }
-}
-
-class LanguageController {
-  LanguageController._();
-
-  static late final ValueNotifier<Locale?> localeNotifier;
-
-  static void init(Locale? initialLocale) {
-    localeNotifier = ValueNotifier<Locale?>(initialLocale);
-  }
-
-  static Future<void> updateLocale(Locale? locale) async {
-    if (localeNotifier.value?.toLanguageTag() == locale?.toLanguageTag()) {
-      return;
-    }
-    localeNotifier.value = locale;
-    await SPUtil.setLocale(locale?.languageCode);
-  }
-}
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -45,15 +12,11 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  late ThemeMode _themeMode;
-  Locale? _locale;
   String _version = '';
 
   @override
   void initState() {
     super.initState();
-    _themeMode = ThemeController.themeNotifier.value;
-    _locale = LanguageController.localeNotifier.value;
     _loadVersion();
   }
 
@@ -86,7 +49,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                     ),
                     subtitle: Text(
-                      _themeModeLabel(_themeMode),
+                      _themeModeLabel(context.watch<ConfigStore>().themeMode),
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: colorScheme.onSurfaceVariant,
                       ),
@@ -102,7 +65,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                     ),
                     subtitle: Text(
-                      _localeLabel(_locale),
+                      _localeLabel(context.watch<ConfigStore>().locale),
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: colorScheme.onSurfaceVariant,
                       ),
@@ -151,6 +114,7 @@ class _SettingsPageState extends State<SettingsPage> {
       context: context,
       builder: (context) {
         final theme = Theme.of(context);
+        final currentMode = context.read<ConfigStore>().themeMode;
         return SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -168,7 +132,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
               RadioGroup<ThemeMode>(
-                groupValue: _themeMode,
+                groupValue: currentMode,
                 onChanged: (mode) {
                   if (mode != null) {
                     Navigator.of(context).pop(mode);
@@ -193,11 +157,8 @@ class _SettingsPageState extends State<SettingsPage> {
       },
     );
 
-    if (selectedMode != null && selectedMode != _themeMode) {
-      setState(() {
-        _themeMode = selectedMode;
-      });
-      await ThemeController.updateThemeMode(selectedMode);
+    if (selectedMode != null && mounted) {
+      context.read<ConfigStore>().setThemeMode(selectedMode);
     }
   }
 
@@ -225,6 +186,7 @@ class _SettingsPageState extends State<SettingsPage> {
       context: context,
       builder: (context) {
         final theme = Theme.of(context);
+        final currentLocale = context.read<ConfigStore>().locale;
         return SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -242,7 +204,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
               RadioGroup<Locale?>(
-                groupValue: _locale,
+                groupValue: currentLocale,
                 onChanged: (value) {
                   Navigator.of(context).pop(_LocaleSelection(value));
                 },
@@ -266,16 +228,8 @@ class _SettingsPageState extends State<SettingsPage> {
     );
 
     // 只有用户明确选择了选项才更新
-    if (selection != null) {
-      final selectedLocale = selection.locale;
-      final isSameLocale =
-          selectedLocale?.languageCode == _locale?.languageCode;
-      if (!isSameLocale) {
-        setState(() {
-          _locale = selectedLocale;
-        });
-        await LanguageController.updateLocale(selectedLocale);
-      }
+    if (selection != null && mounted) {
+      context.read<ConfigStore>().setLocale(selection.locale);
     }
   }
 }
