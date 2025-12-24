@@ -30,7 +30,7 @@ class SPUtil {
     return _spf.setString(ConstantsKeyCache.keyLanguageCode, languageCode);
   }
 
-  static Locale? getLocale() {
+  static Locale getLocale() {
     final String? saved = _spf.getString(ConstantsKeyCache.keyLanguageCode);
     if (saved != null && saved.isNotEmpty) return Locale(saved);
 
@@ -42,7 +42,7 @@ class SPUtil {
       (locale) => locale.languageCode == systemCode,
     );
 
-    return isSupported ? Locale(systemCode) : null;
+    return isSupported ? Locale(systemCode) : const Locale('en');
   }
 
   /// 主题模式

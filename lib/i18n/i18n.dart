@@ -63,21 +63,12 @@ abstract class S {
   };
 
   // 需要翻译的字段追加到下面，在子类中进行赋值。
-  String get cancel;
-  String get ok;
-  String get readAndAgree;
-  String get privacyPolicy;
-  String get termsOfService;
-
-  String get me;
   String get settingsTitle;
   String get settingsLanguage;
-  String get settingsLanguageSystem;
   String get settingsTheme;
   String get settingsThemeLight;
   String get settingsThemeDark;
   String get settingsThemeSystem;
-
   String get settingsVersion;
 
   String get dialogBtnClose;

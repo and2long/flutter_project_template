@@ -162,27 +162,23 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  String _localeLabel(Locale? locale) {
-    if (locale == null) {
-      return S.of(context).settingsLanguageSystem;
-    }
+  String _localeLabel(Locale locale) {
     return S.localeSets[locale.languageCode] ?? locale.languageCode;
   }
 
   Future<void> _showLanguageSelector() async {
     final strings = S.of(context);
     final options = [
-      MapEntry<Locale?, String>(null, strings.settingsLanguageSystem),
       ...S.supportedLocales.map(
-        (locale) => MapEntry<Locale?, String>(
-          locale,
+        (locale) => MapEntry<String, String>(
+          locale.languageCode,
           S.localeSets[locale.languageCode] ?? locale.languageCode,
         ),
       ),
     ];
 
-    // 使用包装类来区分"选择了系统默认(null)"和"未选择直接关闭"
-    final selection = await showModalBottomSheet<_LocaleSelection>(
+    // 返回所选的 Locale，如果直接关闭则返回 null
+    final selectedLocale = await showModalBottomSheet<Locale>(
       context: context,
       builder: (context) {
         final theme = Theme.of(context);
@@ -203,16 +199,22 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
               ),
-              RadioGroup<Locale?>(
-                groupValue: currentLocale,
+              RadioGroup<String>(
+                groupValue: currentLocale.languageCode,
                 onChanged: (value) {
-                  Navigator.of(context).pop(_LocaleSelection(value));
+                  if (value != null) {
+                    final locale = S.supportedLocales.firstWhere(
+                      (l) => l.languageCode == value,
+                      orElse: () => S.supportedLocales.first,
+                    );
+                    Navigator.of(context).pop(locale);
+                  }
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: options
                       .map(
-                        (option) => RadioListTile<Locale?>(
+                        (option) => RadioListTile<String>(
                           value: option.key,
                           title: Text(option.value),
                         ),
@@ -228,14 +230,8 @@ class _SettingsPageState extends State<SettingsPage> {
     );
 
     // 只有用户明确选择了选项才更新
-    if (selection != null && mounted) {
-      context.read<ConfigStore>().setLocale(selection.locale);
+    if (selectedLocale != null && mounted) {
+      context.read<ConfigStore>().setLocale(selectedLocale);
     }
   }
-}
-
-/// 用于区分"选择了系统默认(null)"和"未选择直接关闭弹窗"
-class _LocaleSelection {
-  final Locale? locale;
-  const _LocaleSelection(this.locale);
 }
