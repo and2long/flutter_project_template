@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_project_template/components/custom_loading_widget.dart';
 import 'package:flutter_project_template/core/network/http.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/pages/home_page.dart';
@@ -10,8 +11,7 @@ import 'package:flutter_project_template/store.dart';
 import 'package:flutter_project_template/theme.dart';
 import 'package:flutter_project_template/utils/sp_util.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_ytlog/flutter_ytlog.dart';
+import 'package:flutter_ytnavigator/flutter_ytnavigator.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -56,14 +56,12 @@ class _MyAppState extends State<MyApp> {
               GlobalMaterialLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
-              // 项目本地化资源代理
               S.delegate,
             ],
-            // 支持的语言
             supportedLocales: S.supportedLocales,
             locale: config.locale,
             home: const HomePage(),
-            navigatorObservers: [MyRouteObserver()],
+            navigatorObservers: [YTNavigatorObserver()],
             builder: FlutterSmartDialog.init(
               builder: (context, child) => GestureDetector(
                 behavior: HitTestBehavior.translucent,
@@ -78,45 +76,5 @@ class _MyAppState extends State<MyApp> {
         },
       ),
     );
-  }
-}
-
-class CustomLoadingWidget extends StatelessWidget {
-  final String msg;
-  const CustomLoadingWidget({super.key, required this.msg});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 70,
-      height: 70,
-      decoration: BoxDecoration(
-        color: Colors.black87,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: const SpinKitFadingCircle(color: Colors.white, size: 40.0),
-    );
-  }
-}
-
-class MyRouteObserver<R extends Route<dynamic>> extends RouteObserver<R> {
-  final String _tag = 'MyRouteObserver';
-  @override
-  void didPush(Route route, Route? previousRoute) {
-    super.didPush(route, previousRoute);
-    Log.i(_tag, '⤴️ push to route: ${route.settings.name}');
-  }
-
-  @override
-  void didReplace({Route? newRoute, Route? oldRoute}) {
-    String curPageName = newRoute?.settings.name ?? '';
-    Log.i(_tag, '🔂 replace to route: $curPageName');
-  }
-
-  @override
-  void didPop(Route route, Route? previousRoute) async {
-    super.didPop(route, previousRoute);
-    String curPageName = previousRoute?.settings.name ?? '';
-    Log.i(_tag, '⤵️ pop to route: $curPageName');
   }
 }
