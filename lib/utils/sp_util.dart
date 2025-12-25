@@ -22,11 +22,8 @@ class SPUtil {
     return _spf.getBool(ConstantsKeyCache.keyIsFirst) ?? true;
   }
 
-  /// Locale 设置（可为 null 表示跟随系统）
-  static Future<bool> setLocale(String? languageCode) {
-    if (languageCode == null) {
-      return _spf.remove(ConstantsKeyCache.keyLanguageCode);
-    }
+  /// Locale 设置
+  static Future<bool> setLocale(String languageCode) {
     return _spf.setString(ConstantsKeyCache.keyLanguageCode, languageCode);
   }
 
