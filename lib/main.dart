@@ -49,8 +49,8 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             navigatorKey: MyApp.navigatorKey,
-            theme: AppTheme.light,
-            darkTheme: AppTheme.dark,
+            theme: AppTheme.lightTheme(),
+            darkTheme: AppTheme.darkTheme(),
             themeMode: config.themeMode,
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,

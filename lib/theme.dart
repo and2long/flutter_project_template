@@ -25,21 +25,32 @@ const backgroundColor = Color(0xfff8f8f8);
 
 class AppTheme {
   AppTheme._();
-  static ThemeData light = ThemeData(
-    colorScheme: ColorScheme.fromSeed(
-      brightness: Brightness.light,
-      seedColor: themeColor,
-    ),
-    appBarTheme: const AppBarTheme(centerTitle: true, elevation: 1),
-    dividerTheme: DividerThemeData(color: Colors.grey[200], thickness: 1),
-  );
+  static ThemeData lightTheme() {
+    return _buildTheme(Brightness.light);
+  }
 
-  static ThemeData dark = ThemeData(
-    colorScheme: ColorScheme.fromSeed(
-      brightness: Brightness.dark,
+  static ThemeData darkTheme() {
+    return _buildTheme(Brightness.dark);
+  }
+
+  static ThemeData _buildTheme(Brightness brightness) {
+    final colorScheme = ColorScheme.fromSeed(
       seedColor: themeColor,
-    ),
-    appBarTheme: const AppBarTheme(centerTitle: true, elevation: 1),
-    dividerTheme: DividerThemeData(color: Colors.grey[900], thickness: 1),
-  );
+      brightness: brightness,
+      dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
+      onSurface: brightness == Brightness.dark ? Colors.white : null,
+    );
+    return ThemeData(
+      colorScheme: colorScheme,
+      useMaterial3: true,
+      brightness: brightness,
+      appBarTheme: const AppBarTheme(centerTitle: true, elevation: 1),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: colorScheme.primary,
+        foregroundColor: colorScheme.onPrimary,
+        shape: const CircleBorder(),
+      ),
+      dividerTheme: DividerThemeData(space: 1),
+    );
+  }
 }
