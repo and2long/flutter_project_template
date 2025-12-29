@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/store.dart';
 import 'package:flutter_project_template/utils/toast_util.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -47,6 +48,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ListTile(
+                    leading: const Icon(LucideIcons.palette),
                     title: Text(
                       S.of(context).settingsTheme,
                       style: theme.textTheme.titleMedium?.copyWith(
@@ -61,8 +63,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                     onTap: _showThemeSelector,
                   ),
-                  const Divider(height: 1, indent: 0, endIndent: 0),
+                  const Divider(),
                   ListTile(
+                    leading: const Icon(LucideIcons.languages),
                     title: Text(
                       S.of(context).settingsLanguage,
                       style: theme.textTheme.titleMedium?.copyWith(
@@ -82,6 +85,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Card(
               child: ListTile(
+                leading: const Icon(LucideIcons.mail),
                 title: Text(
                   S.of(context).settingsFeedbackTitle,
                   style: theme.textTheme.titleMedium?.copyWith(

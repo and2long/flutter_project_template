@@ -20,8 +20,6 @@ import 'package:flutter/material.dart';
 /// "medium" is `FontWeight.w500`.
 
 const themeColor = Colors.blue;
-const dividerColor = Color(0xFFE8E8E8);
-const backgroundColor = Color(0xfff8f8f8);
 
 class AppTheme {
   AppTheme._();
@@ -50,7 +48,14 @@ class AppTheme {
         foregroundColor: colorScheme.onPrimary,
         shape: const CircleBorder(),
       ),
-      dividerTheme: DividerThemeData(space: 1),
+      dividerTheme: DividerThemeData(
+        space: 0.5,
+        color: brightness == Brightness.dark
+            ? Color(0xff333333)
+            : Color(0xFFE8E8E8),
+      ),
+      cardTheme: CardThemeData(elevation: 1),
+      textTheme: TextTheme(),
     );
   }
 }
