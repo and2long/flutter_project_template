@@ -36,13 +36,17 @@ class AppTheme {
       seedColor: themeColor,
       brightness: brightness,
       dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
-      onSurface: brightness == Brightness.dark ? Colors.white : null,
     );
     return ThemeData(
       colorScheme: colorScheme,
       useMaterial3: true,
       brightness: brightness,
-      appBarTheme: const AppBarTheme(centerTitle: true, elevation: 1),
+      appBarTheme: AppBarTheme(
+        centerTitle: true,
+        elevation: 1,
+        scrolledUnderElevation: 1,
+        backgroundColor: colorScheme.surface,
+      ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
@@ -54,8 +58,7 @@ class AppTheme {
             ? Color(0xff333333)
             : Color(0xFFE8E8E8),
       ),
-      cardTheme: CardThemeData(elevation: 1),
-      textTheme: TextTheme(),
+      cardTheme: CardThemeData(elevation: 0),
     );
   }
 }
