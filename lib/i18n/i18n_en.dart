@@ -23,6 +23,25 @@ class ProjectLocalizationsEN implements S {
   String get settingsVersion => "Version";
 
   @override
+  String get settingsFeedbackTitle => "Email Feedback";
+
+  @override
+  String get settingsFeedbackSubtitle => "Report issues or share suggestions";
+
+  @override
+  String get settingsFeedbackBodyIntro =>
+      "Please describe your issue or suggestion:";
+
+  @override
+  String get settingsFeedbackAppVersion => "App Version";
+
+  @override
+  String get settingsFeedbackSystemInfo => "System Info";
+
+  @override
+  String get settingsFeedbackLaunchFailure => "Unable to open email app";
+
+  @override
   String get dialogBtnClose => 'Close';
 
   @override

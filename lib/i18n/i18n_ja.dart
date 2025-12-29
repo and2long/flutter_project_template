@@ -23,6 +23,24 @@ class ProjectLocalizationsJA implements S {
   String get settingsVersion => "バージョン";
 
   @override
+  String get settingsFeedbackTitle => "メールでフィードバック";
+
+  @override
+  String get settingsFeedbackSubtitle => "不具合報告や提案を送信";
+
+  @override
+  String get settingsFeedbackBodyIntro => "問題や提案の内容をご記入ください：";
+
+  @override
+  String get settingsFeedbackAppVersion => "アプリのバージョン";
+
+  @override
+  String get settingsFeedbackSystemInfo => "システム情報";
+
+  @override
+  String get settingsFeedbackLaunchFailure => "メールアプリを開けません";
+
+  @override
   String get dialogBtnClose => '閉じる';
 
   @override

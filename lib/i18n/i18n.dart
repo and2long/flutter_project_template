@@ -70,6 +70,12 @@ abstract class S {
   String get settingsThemeDark;
   String get settingsThemeSystem;
   String get settingsVersion;
+  String get settingsFeedbackTitle;
+  String get settingsFeedbackSubtitle;
+  String get settingsFeedbackBodyIntro;
+  String get settingsFeedbackAppVersion;
+  String get settingsFeedbackSystemInfo;
+  String get settingsFeedbackLaunchFailure;
 
   String get dialogBtnClose;
   String get dialogBtnConfirm;

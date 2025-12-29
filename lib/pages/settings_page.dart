@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
 import 'package:flutter_project_template/store.dart';
+import 'package:flutter_project_template/utils/toast_util.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -12,6 +16,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  static const String _feedbackEmail = 'and2long@icloud.com';
   String _version = '';
 
   @override
@@ -73,6 +78,23 @@ class _SettingsPageState extends State<SettingsPage> {
                     onTap: _showLanguageSelector,
                   ),
                 ],
+              ),
+            ),
+            Card(
+              child: ListTile(
+                title: Text(
+                  S.of(context).settingsFeedbackTitle,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                subtitle: Text(
+                  S.of(context).settingsFeedbackSubtitle,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                onTap: _sendFeedbackEmail,
               ),
             ),
             const SizedBox(height: 24),
@@ -232,6 +254,59 @@ class _SettingsPageState extends State<SettingsPage> {
     // 只有用户明确选择了选项才更新
     if (selectedLocale != null && mounted) {
       context.read<ConfigStore>().setLocale(selectedLocale);
+    }
+  }
+
+  String _buildFeedbackBody(S strings, String version, String systemInfo) {
+    return [
+      strings.settingsFeedbackBodyIntro,
+      '',
+      '${strings.settingsFeedbackAppVersion}: $version',
+      '${strings.settingsFeedbackSystemInfo}: $systemInfo',
+    ].join('\n');
+  }
+
+  String _getSystemInfo() {
+    final osName = Platform.operatingSystem;
+    final osVersion = Platform.operatingSystemVersion;
+    return '$osName $osVersion';
+  }
+
+  Future<String> _getVersionForFeedback() async {
+    if (_version.isNotEmpty) return _version;
+    final info = await PackageInfo.fromPlatform();
+    final version = '${info.version}+${info.buildNumber}';
+    if (mounted) {
+      setState(() {
+        _version = version;
+      });
+    }
+    return version;
+  }
+
+  Future<void> _sendFeedbackEmail() async {
+    final strings = S.of(context);
+    final version = await _getVersionForFeedback();
+    final systemInfo = _getSystemInfo();
+    final body = _buildFeedbackBody(strings, version, systemInfo);
+    final subject = Uri.encodeComponent("Flutter Project Template Feedback");
+    final normalizedBody = body.replaceAll('\n', '\r\n');
+    final encodedBody = Uri.encodeComponent(normalizedBody);
+    final mailtoUrl =
+        'mailto:$_feedbackEmail?subject=$subject&body=$encodedBody';
+
+    try {
+      final launched = await launchUrlString(
+        mailtoUrl,
+        mode: LaunchMode.externalApplication,
+      );
+      if (!launched && mounted) {
+        ToastUtil.show(strings.settingsFeedbackLaunchFailure);
+      }
+    } catch (_) {
+      if (mounted) {
+        ToastUtil.show(strings.settingsFeedbackLaunchFailure);
+      }
     }
   }
 }

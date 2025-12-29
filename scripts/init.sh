@@ -103,6 +103,9 @@ sed "${SED_INPLACE[@]}" "s/com.example.flutterProjectTemplate/$package_name/g" i
 # 修改 iOS 程序名称 `CFBundleDisplayName`
 sed "${SED_INPLACE[@]}" "s/Flutter Project Template/$app_name/g" ios/Runner/Info.plist
 
+# 修改 应用设置中的邮件反馈标题中显示的应用名字
+sed "${SED_INPLACE[@]}" "s/Flutter Project Template/$app_name/g" lib/pages/settings_page.dart
+
 # 将 ios/Runner/Info.plist 中的 "flutter_project_template" 改为 project_name
 sed "${SED_INPLACE[@]}" "s/flutter_project_template/$project_name/g" ios/Runner/Info.plist
 
