@@ -21,7 +21,7 @@ read domain
 
 # 询问项目的显示名称
 echo "3. 请输入项目的显示名称："
-read app_name
+read display_name
 
 # 处理不同系统的 sed -i 语法
 if sed --version >/dev/null 2>&1; then
@@ -69,11 +69,11 @@ sed "${SED_INPLACE[@]}" "s/flutter_project_template/$project_name/g" pubspec.yam
 # 将 test/widget_test.dart 中的 flutter_project_template 替换为项目名
 sed "${SED_INPLACE[@]}" "s/flutter_project_template/$project_name/g" test/widget_test.dart
 
-# 将 README.md 中的 flutter_project_template 替换为项目名
-sed "${SED_INPLACE[@]}" "s/flutter_project_template/$app_name/g" README.md
-
 # 将 lib 文件夹下的所有文件里的 flutter_project_template 替换为项目名
 find lib -name "*.dart" -exec sed "${SED_INPLACE[@]}" "s/flutter_project_template/$project_name/g" {} +
+
+# 修改 应用设置中的邮件反馈标题中显示的应用名字
+sed "${SED_INPLACE[@]}" "s/Flutter Project Template/$display_name/g" lib/pages/settings_page.dart
 
 # 格式化 lib 文件夹下的所有文件
 dart format lib
@@ -95,20 +95,19 @@ mv "$old_main" "$new_main_dir/MainActivity.kt"
 find "$kotlin_root" -type d -empty -delete
 
 # 5. 修改Android 程序名 android:label
-sed "${SED_INPLACE[@]}" "s/flutter_project_template/$app_name/g" android/app/src/main/AndroidManifest.xml
+sed "${SED_INPLACE[@]}" "s/flutter_project_template/$display_name/g" android/app/src/main/AndroidManifest.xml
 
 # 6. iOS 包名 `PRODUCT_BUNDLE_IDENTIFIER`
 sed "${SED_INPLACE[@]}" "s/com.example.flutterProjectTemplate/$package_name/g" ios/Runner.xcodeproj/project.pbxproj
 
 # 修改 iOS 程序名称 `CFBundleDisplayName`
-sed "${SED_INPLACE[@]}" "s/Flutter Project Template/$app_name/g" ios/Runner/Info.plist
-
-# 修改 应用设置中的邮件反馈标题中显示的应用名字
-sed "${SED_INPLACE[@]}" "s/Flutter Project Template/$app_name/g" lib/pages/settings_page.dart
+sed "${SED_INPLACE[@]}" "s/Flutter Project Template/$display_name/g" ios/Runner/Info.plist
 
 # 将 ios/Runner/Info.plist 中的 "flutter_project_template" 改为 project_name
 sed "${SED_INPLACE[@]}" "s/flutter_project_template/$project_name/g" ios/Runner/Info.plist
 
+# 将 README.md 中的内容全部删除，只保留标题，标题显示 display_name
+echo "# $display_name" > README.md
 
 echo "🎉 初始化完成"
 echo "⚠️ 请执行以下命令，解决代码错误:"
