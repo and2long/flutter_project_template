@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_serena_serena__read_file",
+      "Skill(frontend-design:frontend-design)",
+      "mcp__plugin_serena_serena__activate_project",
+      "mcp__plugin_serena_serena__check_onboarding_performed",
+      "mcp__plugin_serena_serena__replace_symbol_body",
+      "mcp__plugin_serena_serena__find_symbol",
+      "mcp__plugin_serena_serena__replace_content"
+    ]
+  }
+}
