@@ -3,5 +3,10 @@
     "allow": [
       "mcp__serena"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "github",
+    "context7",
+    "serena"
+  ]
 }
