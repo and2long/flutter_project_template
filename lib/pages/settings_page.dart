@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_project_template/core/store/config_store.dart';
 import 'package:flutter_project_template/i18n/i18n.dart';
-import 'package:flutter_project_template/store.dart';
 import 'package:flutter_project_template/utils/toast_util.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:package_info_plus/package_info_plus.dart';

@@ -15,6 +15,7 @@ class ConstantsHttp {
   ConstantsHttp._();
 
   static const String baseUrl = '';
+  static const String health = '/api/health';
 }
 
 const appBarHeight = kToolbarHeight;
